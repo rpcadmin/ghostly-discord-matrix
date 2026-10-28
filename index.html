@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Ghostly — Platform Feature Parity Matrix</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Ghostly &mdash; Feature Parity Matrix v1.1</title>
+
 <!-- Google Fonts: Sora & Inter -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +15,7 @@
 
 <style>
   /* ==========================================================================
-     MIDNIGHT FROST DESIGN SYSTEM (Clean, Responsive, Mobile-Perfect)
+     MIDNIGHT FROST DESIGN SYSTEM (SpectreDeck Dark Console Aesthetic)
      ========================================================================== */
   :root {
     --bg-app: #071426;
@@ -26,17 +30,18 @@
     --primary-accent: #176BFF;
     --bright-accent: #288FFF;
     --ice-cyan: #42C8FF;
+    --hover-blue: #174A98;
     
     --text-primary: #F4F8FF;
     --text-secondary: #98ACC8;
     --text-muted: #5B7294;
     
     --ryco-blue: #288FFF;
-    --ryco-glow: rgba(40, 143, 255, 0.28);
+    --ryco-glow: rgba(40, 143, 255, 0.35);
     --ryco-subtle: rgba(23, 107, 255, 0.16);
     
     --ash-amber: #F59E0B;
-    --ash-glow: rgba(245, 158, 11, 0.28);
+    --ash-glow: rgba(245, 158, 11, 0.35);
     --ash-subtle: rgba(245, 158, 11, 0.16);
     
     --mutual-cyan: #42C8FF;
@@ -45,15 +50,20 @@
     --success: #10B981;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
 
   body {
     background-color: var(--bg-app);
     background-image: 
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(23, 107, 255, 0.15), transparent 70%);
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(23, 107, 255, 0.16), transparent 70%);
     background-attachment: fixed;
     color: var(--text-primary);
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.5;
     min-height: 100vh;
     padding-bottom: 90px;
@@ -65,16 +75,16 @@
     font-family: 'Sora', sans-serif;
   }
 
-  /* Top Header */
+  /* Top Command Header */
   header {
-    background: rgba(16, 31, 54, 0.92);
+    background: rgba(16, 31, 54, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
-    padding: 12px 18px;
+    padding: 12px 20px;
   }
   .header-container {
     max-width: 1360px;
@@ -91,8 +101,8 @@
     gap: 12px;
   }
   .brand-logo-frame {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 9px;
     background: var(--surface-elevated);
     border: 1px solid var(--border-accent);
@@ -101,6 +111,7 @@
     justify-content: center;
     overflow: hidden;
     flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(40, 143, 255, 0.25);
   }
   .brand-logo-frame img {
     width: 100%;
@@ -110,20 +121,21 @@
   .brand-title {
     font-size: 16px;
     font-weight: 800;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     color: #fff;
     display: flex;
     align-items: center;
     gap: 8px;
   }
   .brand-badge {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--ice-cyan);
     background: rgba(66, 200, 255, 0.1);
     border: 1px solid rgba(66, 200, 255, 0.25);
     padding: 2px 7px;
     border-radius: 4px;
+    letter-spacing: 0.4px;
     text-transform: uppercase;
   }
   .brand-sub {
@@ -131,7 +143,7 @@
     color: var(--text-secondary);
   }
 
-  /* Reviewer Switcher */
+  /* Reviewer Selector */
   .reviewer-switcher {
     display: inline-flex;
     align-items: center;
@@ -139,15 +151,15 @@
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 3px;
-    gap: 2px;
+    gap: 3px;
   }
   .switch-tag {
-    font-size: 10.5px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 600;
     color: var(--text-muted);
+    padding: 0 6px 0 8px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 0 8px;
+    letter-spacing: 0.4px;
   }
   .switch-opt {
     background: transparent;
@@ -155,41 +167,50 @@
     color: var(--text-secondary);
     font-size: 12px;
     font-weight: 600;
-    padding: 6px 12px;
+    padding: 6px 14px;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.15s ease;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-    min-height: 32px;
+    transition: all 0.15s ease;
   }
-  .switch-opt.active.ryco {
-    background: var(--ryco-subtle);
-    border-color: var(--ryco-blue);
-    color: #fff;
-  }
-  .switch-opt.active.ash {
-    background: var(--ash-subtle);
-    border-color: var(--ash-amber);
-    color: #fff;
-  }
-  .pip-dot {
+  .switch-opt .pip-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
+    background: var(--text-muted);
+    transition: all 0.15s ease;
   }
-  .switch-opt.ryco .pip-dot { background: var(--ryco-blue); }
-  .switch-opt.ash .pip-dot { background: var(--ash-amber); }
+  .switch-opt.ryco.active {
+    background: var(--ryco-subtle);
+    border-color: var(--ryco-blue);
+    color: #fff;
+    box-shadow: 0 0 10px var(--ryco-glow);
+  }
+  .switch-opt.ryco.active .pip-dot {
+    background: var(--ryco-blue);
+    box-shadow: 0 0 6px var(--ryco-blue);
+  }
+  .switch-opt.ash.active {
+    background: var(--ash-subtle);
+    border-color: var(--ash-amber);
+    color: #fff;
+    box-shadow: 0 0 10px var(--ash-glow);
+  }
+  .switch-opt.ash.active .pip-dot {
+    background: var(--ash-amber);
+    box-shadow: 0 0 6px var(--ash-amber);
+  }
 
-  /* Tabs Switcher */
+  /* Navigation Tabs */
   .console-tabs {
     display: inline-flex;
     background: #091322;
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: 3px;
-    gap: 2px;
+    gap: 3px;
   }
   .console-tab-btn {
     background: transparent;
@@ -198,23 +219,26 @@
     font-family: 'Sora', sans-serif;
     font-size: 12px;
     font-weight: 600;
-    padding: 6px 14px;
+    padding: 7px 16px;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s ease;
-    min-height: 32px;
+  }
+  .console-tab-btn:hover {
+    color: #fff;
   }
   .console-tab-btn.active {
-    background: var(--surface-elevated);
-    border-color: var(--border-accent);
+    background: var(--primary-accent);
+    border-color: var(--bright-accent);
     color: #fff;
+    box-shadow: 0 0 12px rgba(23, 107, 255, 0.4);
   }
 
   /* Main Container */
   main {
     max-width: 1360px;
-    margin: 18px auto;
-    padding: 0 18px;
+    margin: 20px auto;
+    padding: 0 20px;
   }
 
   .view-tab-content {
@@ -222,37 +246,34 @@
   }
   .view-tab-content.active {
     display: block;
-    animation: fadeIn 0.18s ease;
-  }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(4px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Command Control Panel */
+  /* Command Controls Panel */
   .command-panel {
     background: var(--surface-main);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 14px 16px;
-    margin-bottom: 16px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
   }
   .panel-row-upper {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 12px;
   }
   .filter-cluster {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: 6px;
   }
   .cmd-filter-btn {
     background: var(--surface-card);
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
     font-size: 11.5px;
     font-weight: 600;
@@ -260,91 +281,88 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.15s ease;
-    min-height: 32px;
+    white-space: nowrap;
+  }
+  .cmd-filter-btn:hover {
+    border-color: var(--border-accent);
+    color: #fff;
   }
   .cmd-filter-btn.active {
     background: var(--surface-elevated);
-    border-color: var(--border-accent);
-    color: #fff;
-  }
-  .cmd-filter-btn.active.mutual-filter {
-    background: rgba(66, 200, 255, 0.12);
-    border-color: var(--ice-cyan);
+    border-color: var(--bright-accent);
     color: var(--ice-cyan);
-  }
-  .cmd-filter-btn.active.ryco-filter {
-    background: var(--ryco-subtle);
-    border-color: var(--ryco-blue);
-    color: #93C5FD;
-  }
-  .cmd-filter-btn.active.ash-filter {
-    background: var(--ash-subtle);
-    border-color: var(--ash-amber);
-    color: #FDE68A;
+    box-shadow: 0 0 8px rgba(40, 143, 255, 0.25);
   }
 
+  /* Action Buttons */
   .cmd-actions {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
   }
   .btn-gaming {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 11.5px;
+    font-weight: 600;
     padding: 7px 14px;
     border-radius: 6px;
+    border: 1px solid transparent;
     cursor: pointer;
-    border: none;
-    transition: all 0.15s ease;
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    min-height: 34px;
+    transition: all 0.15s ease;
+    white-space: nowrap;
   }
   .btn-gaming-primary {
-    background: linear-gradient(135deg, var(--primary-accent) 0%, var(--bright-accent) 100%);
+    background: var(--primary-accent);
     color: #fff;
+    border-color: var(--bright-accent);
+    box-shadow: 0 0 10px rgba(23, 107, 255, 0.35);
+  }
+  .btn-gaming-primary:hover {
+    background: var(--bright-accent);
   }
   .btn-gaming-wa {
-    background: var(--success);
-    color: #fff;
+    background: rgba(16, 185, 129, 0.15);
+    color: #34D399;
+    border-color: rgba(16, 185, 129, 0.4);
+  }
+  .btn-gaming-wa:hover {
+    background: rgba(16, 185, 129, 0.28);
   }
   .btn-gaming-panel {
     background: var(--surface-card);
-    border: 1px solid var(--border);
     color: var(--text-secondary);
+    border-color: var(--border-subtle);
   }
-
-  /* Search Input */
-  .cmd-search-wrap {
-    position: relative;
-    width: 100%;
-  }
-  .cmd-search-input {
-    width: 100%;
-    background: var(--surface-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 14px 10px 38px;
-    color: #fff;
-    font-size: 13px;
-    outline: none;
-  }
-  .cmd-search-input:focus {
+  .btn-gaming-panel:hover {
     border-color: var(--border-accent);
-  }
-  .cmd-search-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    stroke: var(--text-muted);
+    color: #fff;
   }
 
-  /* Category Navigation Horizontal Strip */
+  /* Search Bar */
+  .search-input-box {
+    width: 100%;
+    background: #091322;
+    border: 1px solid var(--border-subtle);
+    border-radius: 7px;
+    padding: 9px 14px;
+    font-size: 13px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+  .search-input-box:focus {
+    border-color: var(--bright-accent);
+    box-shadow: 0 0 10px rgba(40, 143, 255, 0.25);
+  }
+  .search-input-box::placeholder {
+    color: var(--text-muted);
+  }
+
+  /* Category Horizontal Scroll Strip */
   .category-strip {
     display: flex;
     gap: 6px;
@@ -363,31 +381,36 @@
     color: var(--text-secondary);
     font-size: 11.5px;
     font-weight: 600;
-    padding: 6px 13px;
-    border-radius: 6px;
-    white-space: nowrap;
+    padding: 7px 14px;
+    border-radius: 7px;
     cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s ease;
     flex-shrink: 0;
-    min-height: 32px;
+  }
+  .category-pill-btn:hover {
+    border-color: var(--border-accent);
+    color: #fff;
   }
   .category-pill-btn.active {
     background: var(--surface-elevated);
-    border-color: var(--border-accent);
+    border-color: var(--ice-cyan);
     color: #fff;
-    font-weight: 700;
+    box-shadow: 0 0 10px rgba(66, 200, 255, 0.25);
   }
 
-  /* Domain Container & Sub-Groups */
+  /* Master Domain Cards */
   .domain-master-card {
     background: var(--surface-main);
     border: 1px solid var(--border);
     border-radius: 12px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
   }
   .domain-master-header {
     padding: 14px 18px;
-    background: rgba(21, 42, 69, 0.4);
+    background: rgba(21, 42, 69, 0.45);
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
@@ -395,44 +418,42 @@
     gap: 12px;
     flex-wrap: wrap;
   }
-  .domain-title-block h2 {
-    font-size: 15.5px;
+  .domain-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .domain-tag-pill {
+    font-family: 'Sora', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--ice-cyan);
+    background: rgba(66, 200, 255, 0.1);
+    border: 1px solid rgba(66, 200, 255, 0.25);
+    padding: 3px 8px;
+    border-radius: 5px;
+  }
+  .domain-title-text {
+    font-family: 'Sora', sans-serif;
+    font-size: 14.5px;
     font-weight: 700;
     color: #fff;
   }
-  .domain-title-block p {
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-  }
-  .domain-status-pills {
+  .domain-badges {
     display: flex;
-    gap: 6px;
     align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
   }
-  .domain-indicator {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 8px;
+  .domain-badge-item {
+    padding: 3px 9px;
     border-radius: 5px;
-    border: 1px solid transparent;
-  }
-  .domain-indicator.mutual {
-    background: rgba(66, 200, 255, 0.12);
-    border-color: var(--ice-cyan);
-    color: var(--ice-cyan);
-  }
-  .domain-indicator.ryco {
-    background: var(--ryco-subtle);
-    border-color: var(--ryco-blue);
-    color: #93C5FD;
-  }
-  .domain-indicator.ash {
-    background: var(--ash-subtle);
-    border-color: var(--ash-amber);
-    color: #FDE68A;
+    background: rgba(9, 19, 34, 0.6);
+    border: 1px solid var(--border-subtle);
   }
 
+  /* Subgroup Panel */
   .subgroup-panel {
     padding: 14px 18px;
     border-bottom: 1px solid var(--border-subtle);
@@ -445,6 +466,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .subgroup-title {
     font-family: 'Sora', sans-serif;
@@ -462,18 +485,17 @@
     text-decoration: underline;
     background: transparent;
     border: none;
+    transition: color 0.15s ease;
+  }
+  .subgroup-toggle-all:hover {
+    color: var(--ice-cyan);
   }
 
   /* Feature Cards Grid */
   .cards-grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 10px;
-  }
-  @media (max-width: 768px) {
-    .cards-grid-layout {
-      grid-template-columns: 1fr;
-    }
   }
 
   .feature-console-card {
@@ -491,127 +513,127 @@
   }
   .feature-console-card:hover {
     background: var(--surface-card-hover);
-    border-color: var(--bright-accent);
+    border-color: var(--border-accent);
   }
-
-  /* Selection States */
   .feature-console-card.active-ryco {
-    border-color: var(--ryco-blue);
-    background: linear-gradient(180deg, rgba(23, 107, 255, 0.15) 0%, var(--surface-card) 100%);
+    border-color: rgba(40, 143, 255, 0.6);
+    background: linear-gradient(180deg, rgba(23, 107, 255, 0.08) 0%, var(--surface-card) 100%);
   }
   .feature-console-card.active-ash {
-    border-color: var(--ash-amber);
-    background: linear-gradient(180deg, rgba(245, 158, 11, 0.15) 0%, var(--surface-card) 100%);
+    border-color: rgba(245, 158, 11, 0.6);
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.08) 0%, var(--surface-card) 100%);
   }
   .feature-console-card.active-mutual {
-    border-color: var(--ice-cyan);
-    background: linear-gradient(180deg, rgba(66, 200, 255, 0.18) 0%, var(--surface-elevated) 100%);
+    border-color: var(--mutual-cyan);
+    background: linear-gradient(180deg, rgba(66, 200, 255, 0.12) 0%, var(--surface-card) 100%);
+    box-shadow: 0 0 12px var(--mutual-glow);
   }
 
   .feature-top-row {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 8px;
+    margin-bottom: 4px;
   }
   .feature-title-text {
-    font-family: 'Sora', sans-serif;
     font-size: 13.5px;
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     line-height: 1.35;
+    word-break: break-word;
   }
-  .feature-console-card.active-ryco .feature-title-text { color: #BAE6FD; }
-  .feature-console-card.active-ash .feature-title-text { color: #FEF08A; }
-  .feature-console-card.active-mutual .feature-title-text { color: var(--ice-cyan); }
-
   .mutual-consensus-badge {
-    font-size: 10px;
-    font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 4px;
-    background: var(--ice-cyan);
-    color: #071426;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
     display: none;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: rgba(66, 200, 255, 0.2);
+    border: 1px solid var(--ice-cyan);
+    color: var(--ice-cyan);
+    flex-shrink: 0;
   }
-  .feature-console-card.active-mutual .mutual-consensus-badge {
+  .active-mutual .mutual-consensus-badge {
     display: inline-block;
   }
-
   .feature-desc-text {
     font-size: 12px;
     color: var(--text-secondary);
     line-height: 1.45;
   }
 
-  /* Bottom Checkbox Pills */
+  /* Bottom Controls on Card */
   .feature-bottom-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
+    margin-top: 6px;
     padding-top: 8px;
-    border-top: 1px solid var(--border-subtle);
+    border-top: 1px solid rgba(38, 61, 92, 0.4);
   }
   .checkbox-cluster {
     display: flex;
+    align-items: center;
     gap: 6px;
   }
   .hud-check-pill {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 4px 10px;
-    border-radius: 5px;
+    gap: 6px;
+    padding: 5px 11px;
+    border-radius: 6px;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--surface-main);
+    background: #091322;
+    border: 1px solid var(--border-subtle);
     color: var(--text-muted);
-    transition: all 0.12s ease;
-    min-height: 28px;
+    transition: all 0.15s ease;
+    min-height: 34px;
   }
-  .hud-check-pill.active.ryco {
+  .hud-box-glyph {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    background: #060E18;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: transparent;
+    transition: all 0.15s ease;
+  }
+  .hud-check-pill.ryco.active {
     background: var(--ryco-subtle);
     border-color: var(--ryco-blue);
     color: #BAE6FD;
   }
-  .hud-check-pill.active.ash {
+  .hud-check-pill.ryco.active .hud-box-glyph {
+    background: var(--ryco-blue);
+    border-color: var(--ryco-blue);
+    color: #fff;
+  }
+  .hud-check-pill.ash.active {
     background: var(--ash-subtle);
     border-color: var(--ash-amber);
     color: #FEF08A;
   }
-  .hud-box-glyph {
-    width: 11px;
-    height: 11px;
-    border-radius: 2px;
-    border: 1px solid var(--text-muted);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-  }
-  .hud-check-pill.active.ryco .hud-box-glyph {
-    border-color: var(--ryco-blue);
-    background: var(--ryco-blue);
-    color: #071426;
-  }
-  .hud-check-pill.active.ash .hud-box-glyph {
-    border-color: var(--ash-amber);
+  .hud-check-pill.ash.active .hud-box-glyph {
     background: var(--ash-amber);
-    color: #071426;
+    border-color: var(--ash-amber);
+    color: #000;
   }
-
   .hud-state-label {
     font-size: 11px;
-    font-weight: 600;
     color: var(--text-muted);
   }
 
   /* ==========================================================================
-     TAB 2: DASHBOARD & BLIND REVIEW LOCK
+     BLIND REVIEW LOCK & CONSENSUS DASHBOARD
      ========================================================================== */
   .blind-lock-panel {
     background: var(--surface-main);
@@ -620,61 +642,107 @@
     padding: 32px 20px;
     text-align: center;
     max-width: 640px;
+    width: 100%;
     margin: 30px auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-  .lock-crest {
-    width: 48px;
-    height: 48px;
+  .blind-lock-icon {
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
-    background: var(--surface-elevated);
+    background: rgba(23, 107, 255, 0.12);
     border: 1px solid var(--border-accent);
+    color: var(--ice-cyan);
+    font-size: 26px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 16px auto;
-    font-size: 20px;
+    box-shadow: 0 0 20px rgba(40, 143, 255, 0.25);
   }
-  .lock-heading {
-    font-size: 18px;
-    font-weight: 800;
+  .blind-lock-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 19px;
+    font-weight: 700;
     color: #fff;
     margin-bottom: 8px;
   }
-  .lock-subtext {
+  .blind-lock-desc {
     font-size: 13px;
     color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto 20px auto;
     line-height: 1.5;
-    margin-bottom: 22px;
   }
-  .tracker-duo {
+  .blind-review-track {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 12px;
-    margin-bottom: 22px;
-    flex-wrap: wrap;
+    max-width: 420px;
+    margin: 0 auto 22px auto;
   }
-  .tracker-card {
-    background: var(--surface-card);
-    border: 1px solid var(--border);
+  .reviewer-finish-card {
+    background: #091322;
+    border: 1px solid var(--border-subtle);
     border-radius: 8px;
-    padding: 12px 16px;
-    font-size: 12.5px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .reviewer-finish-card.done {
+    border-color: var(--success);
+    background: rgba(16, 185, 129, 0.08);
+  }
+  .rev-name-group {
     text-align: left;
-    min-width: 160px;
-    flex: 1;
   }
-  .tracker-name {
-    font-family: 'Sora', sans-serif;
+  .rev-title {
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: 3px;
+    color: #fff;
   }
-  .tracker-name.ryco { color: var(--ryco-blue); }
-  .tracker-name.ash { color: var(--ash-amber); }
-  .tracker-status-line {
+  .rev-status-lbl {
     font-size: 11.5px;
     color: var(--text-muted);
   }
+  .btn-mark-done {
+    background: var(--surface-elevated);
+    border: 1px solid var(--border-accent);
+    color: var(--ice-cyan);
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-mark-done:hover {
+    background: var(--primary-accent);
+    color: #fff;
+  }
+  .btn-mark-done.done {
+    background: var(--success);
+    border-color: var(--success);
+    color: #fff;
+  }
+  .btn-bypass-lock {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 11.5px;
+    padding: 7px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-bypass-lock:hover {
+    border-color: var(--border-accent);
+    color: #fff;
+  }
 
+  /* Dashboard Unlocked View */
   .dashboard-unlocked-deck {
     display: none;
   }
@@ -682,226 +750,198 @@
     display: block;
   }
 
-  /* KPI Grid */
-  .kpi-stat-deck {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
-    margin-bottom: 18px;
-  }
-  .kpi-tile {
-    background: var(--surface-main);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px 18px;
-    position: relative;
-    overflow: hidden;
-  }
-  .kpi-tile::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-  }
-  .kpi-tile.kpi-all::before { background: var(--text-muted); }
-  .kpi-tile.kpi-ryco::before { background: var(--ryco-blue); }
-  .kpi-tile.kpi-ash::before { background: var(--ash-amber); }
-  .kpi-tile.kpi-mutual::before { background: var(--ice-cyan); }
-
-  .kpi-caption {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-  }
-  .kpi-number {
-    font-family: 'Sora', sans-serif;
-    font-size: 26px;
-    font-weight: 800;
-    color: #fff;
-  }
-  .kpi-tile.kpi-ryco .kpi-number { color: #93C5FD; }
-  .kpi-tile.kpi-ash .kpi-number { color: #FDE68A; }
-  .kpi-tile.kpi-mutual .kpi-number { color: var(--ice-cyan); }
-  .kpi-footnote {
-    font-size: 11.5px;
-    color: var(--text-muted);
-    margin-top: 2px;
-  }
-
-  /* Proportional Alignment Bar */
-  .analytics-pod {
+  /* Telemetry / Consensus Hero */
+  .consensus-telemetry-banner {
     background: var(--surface-main);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 18px;
-  }
-  .analytics-pod-header {
+    padding: 20px;
+    margin-bottom: 20px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 14px;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   }
-  .pod-title-block h3 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #fff;
-  }
-  .pod-title-block p {
-    font-size: 12px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-  }
-
-  .alignment-strip-track {
-    height: 28px;
-    border-radius: 7px;
-    background: var(--bg-app);
-    border: 1px solid var(--border);
+  .alignment-gauge-block {
     display: flex;
-    overflow: hidden;
-    margin-bottom: 12px;
+    align-items: center;
+    gap: 16px;
   }
-  .strip-seg {
-    height: 100%;
+  .gauge-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: conic-gradient(var(--ice-cyan) calc(var(--gauge-pct, 0) * 1%), #091322 0);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
+    position: relative;
+    box-shadow: 0 0 16px rgba(66, 200, 255, 0.3);
+  }
+  .gauge-circle::before {
+    content: '';
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--surface-main);
+    position: absolute;
+  }
+  .gauge-val-text {
+    position: relative;
+    font-family: 'Sora', sans-serif;
+    font-size: 14px;
     font-weight: 800;
-    transition: width 0.3s ease;
-    overflow: hidden;
-    white-space: nowrap;
+    color: #fff;
   }
-  .strip-seg.seg-mutual { background: var(--ice-cyan); color: #071426; }
-  .strip-seg.seg-ryco { background: var(--ryco-blue); color: #fff; }
-  .strip-seg.seg-ash { background: var(--ash-amber); color: #071426; }
-  .strip-seg.seg-open { background: var(--surface-elevated); color: var(--text-muted); }
-
-  .strip-legend-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
+  .gauge-meta-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
   }
-  .legend-unit {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11.5px;
+  .gauge-meta-sub {
+    font-size: 12px;
     color: var(--text-secondary);
-    font-weight: 600;
-  }
-  .legend-cube {
-    width: 9px;
-    height: 9px;
-    border-radius: 2px;
   }
 
-  /* Domains Grid */
-  .domains-console-grid {
+  /* Telemetry Stats Grid */
+  .telemetry-stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 12px;
-    margin-top: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
   }
-  .domain-matrix-card {
-    background: var(--surface-card);
+  .stat-card-item {
+    background: var(--surface-main);
     border: 1px solid var(--border);
     border-radius: 9px;
-    padding: 14px;
+    padding: 12px;
+    text-align: center;
+  }
+  .stat-num-val {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+  }
+  .stat-card-lbl {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    margin-top: 2px;
+  }
+
+  /* Domain Matrix Cards Grid */
+  .domains-deck-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 14px;
+  }
+  .domain-matrix-card {
+    background: var(--surface-main);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+    transition: all 0.15s ease;
+  }
+  .domain-matrix-card:hover {
+    border-color: var(--border-accent);
   }
   .matrix-card-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
-    font-weight: 700;
-    margin-bottom: 8px;
+    gap: 8px;
   }
   .matrix-card-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
     color: #fff;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-word;
   }
   .matrix-card-bars {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    margin-bottom: 12px;
+    gap: 6px;
   }
   .m-bar-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 10.5px;
+    font-size: 11px;
   }
   .m-bar-lbl {
     width: 44px;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-weight: 600;
   }
   .m-bar-track {
     flex: 1;
-    height: 5px;
-    background: var(--bg-app);
-    border-radius: 999px;
+    height: 6px;
+    background: #091322;
+    border-radius: 3px;
     overflow: hidden;
   }
-  .m-fill-mutual { height: 100%; background: var(--ice-cyan); width: 0%; }
-  .m-fill-ryco { height: 100%; background: var(--ryco-blue); width: 0%; }
-  .m-fill-ash { height: 100%; background: var(--ash-amber); width: 0%; }
+  .m-fill-mutual { height: 100%; background: var(--ice-cyan); }
+  .m-fill-ryco { height: 100%; background: var(--ryco-blue); }
+  .m-fill-ash { height: 100%; background: var(--ash-amber); }
   .m-bar-pct {
-    width: 28px;
+    width: 32px;
     text-align: right;
-    color: var(--text-secondary);
-    font-weight: 600;
+    color: var(--text-muted);
+    font-size: 10.5px;
   }
-
   .btn-inspect-domain {
-    width: 100%;
-    padding: 7px 10px;
-    border-radius: 6px;
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--ice-cyan);
     font-size: 11.5px;
-    font-weight: 700;
+    font-weight: 600;
+    padding: 7px 12px;
+    border-radius: 6px;
     cursor: pointer;
-    border: 1px solid var(--border);
-    background: var(--surface-main);
-    color: var(--text-secondary);
-    transition: all 0.15s ease;
     text-align: center;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
   .btn-inspect-domain:hover {
-    border-color: var(--border-accent);
-    color: #fff;
     background: var(--surface-elevated);
+    border-color: var(--ice-cyan);
+    color: #fff;
   }
 
-  /* Drill-down Modal */
-  #drillModal {
+  /* ==========================================================================
+     DOMAIN DRILL-DOWN MODAL ("See All Items")
+     ========================================================================== */
+  .modal-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(4, 11, 22, 0.85);
+    width: 100vw;
+    height: 100vh;
+    background: rgba(3, 8, 16, 0.85);
     backdrop-filter: blur(8px);
-    z-index: 500;
-    display: none;
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 200;
     align-items: center;
     justify-content: center;
-    padding: 16px;
+    padding: 12px;
   }
-  #drillModal.show {
+  .modal-overlay.show {
     display: flex;
-    animation: fadeIn 0.15s ease;
   }
   .modal-frame {
     background: var(--surface-main);
@@ -913,41 +953,53 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
   }
-  .modal-frame-head {
+  .modal-header {
     padding: 14px 18px;
-    background: rgba(21, 42, 69, 0.5);
+    background: var(--surface-elevated);
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
   }
-  .modal-frame-title h3 {
+  .modal-title-text {
+    font-family: 'Sora', sans-serif;
     font-size: 15px;
     font-weight: 700;
     color: #fff;
   }
-  .modal-frame-title p {
+  .modal-desc-text {
     font-size: 11.5px;
     color: var(--text-secondary);
     margin-top: 2px;
   }
-  .modal-dismiss-btn {
+  .modal-btn-close {
     background: transparent;
-    border: 1px solid var(--border);
+    border: 1px solid var(--border-subtle);
     color: var(--text-secondary);
-    font-size: 18px;
     width: 28px;
     height: 28px;
     border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    font-size: 14px;
+    transition: all 0.15s ease;
   }
-  .modal-frame-body {
+  .modal-btn-close:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+  .modal-body-scroll {
     padding: 14px 18px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    -webkit-overflow-scrolling: touch;
   }
   .modal-card-row {
     background: var(--surface-card);
@@ -960,7 +1012,8 @@
     gap: 12px;
   }
   .modal-card-row.mutual {
-    border-left: 3px solid var(--ice-cyan);
+    border-color: var(--ice-cyan);
+    background: rgba(66, 200, 255, 0.08);
   }
   .modal-card-info {
     flex: 1;
@@ -969,61 +1022,92 @@
     font-size: 13px;
     font-weight: 700;
     color: #fff;
+    word-break: break-word;
   }
   .modal-card-desc {
     font-size: 11.5px;
     color: var(--text-secondary);
     line-height: 1.4;
+    margin-top: 2px;
   }
   .modal-card-votes {
     display: flex;
     align-items: center;
     gap: 6px;
-    white-space: nowrap;
+    flex-wrap: wrap;
   }
   .vote-pill {
     font-size: 10.5px;
-    font-weight: 700;
-    padding: 2px 7px;
+    font-weight: 600;
+    padding: 3px 8px;
     border-radius: 4px;
     border: 1px solid transparent;
+    white-space: nowrap;
   }
-  .vote-pill.ryco-yes { background: var(--ryco-subtle); border-color: var(--ryco-blue); color: #BAE6FD; }
-  .vote-pill.ryco-no { background: rgba(255,255,255,0.03); color: var(--text-muted); }
-  .vote-pill.ash-yes { background: var(--ash-subtle); border-color: var(--ash-amber); color: #FEF08A; }
-  .vote-pill.ash-no { background: rgba(255,255,255,0.03); color: var(--text-muted); }
+  .vote-pill.ryco-yes {
+    background: var(--ryco-subtle);
+    border-color: var(--ryco-blue);
+    color: #BAE6FD;
+  }
+  .vote-pill.ryco-no {
+    background: #091322;
+    color: var(--text-muted);
+  }
+  .vote-pill.ash-yes {
+    background: var(--ash-subtle);
+    border-color: var(--ash-amber);
+    color: #FEF08A;
+  }
+  .vote-pill.ash-no {
+    background: #091322;
+    color: var(--text-muted);
+  }
   .vote-flag {
     font-size: 10.5px;
-    font-weight: 800;
-    padding: 2px 7px;
+    font-weight: 700;
+    padding: 3px 8px;
     border-radius: 4px;
+    white-space: nowrap;
   }
-  .vote-flag.both { background: rgba(66, 200, 255, 0.15); color: var(--ice-cyan); border: 1px solid var(--ice-cyan); }
-  .vote-flag.diff { background: rgba(255,255,255,0.05); color: var(--text-secondary); }
+  .vote-flag.both {
+    background: rgba(66, 200, 255, 0.2);
+    color: var(--ice-cyan);
+    border: 1px solid var(--ice-cyan);
+  }
+  .vote-flag.diff {
+    background: rgba(239, 68, 68, 0.15);
+    color: #F87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+  }
 
   /* Toast Notification */
-  #toastNotification {
+  .toast-notif {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
     background: var(--surface-elevated);
     border: 1px solid var(--border-accent);
     color: #fff;
-    padding: 10px 18px;
+    padding: 10px 20px;
     border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(4, 11, 22, 0.7);
     font-size: 12.5px;
     font-weight: 600;
-    display: none;
-    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 300;
+    opacity: 0;
+    transition: all 0.25s ease;
+    pointer-events: none;
+    max-width: 90%;
+    text-align: center;
   }
-  #toastNotification.show {
-    display: flex;
-    animation: fadeIn 0.15s ease;
+  .toast-notif.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
   }
 
   /* ==========================================================================
-     MOBILE RESPONSIVE TWEAKS (< 768px)
+     MOBILE RESPONSIVENESS OVERRIDES (< 768px)
      ========================================================================== */
   @media (max-width: 768px) {
     header {
@@ -1039,49 +1123,96 @@
     }
     .reviewer-switcher {
       width: 100%;
-      justify-content: space-between;
+      justify-content: stretch;
+    }
+    .switch-tag {
+      display: none;
     }
     .switch-opt {
       flex: 1;
       justify-content: center;
+      min-height: 40px;
+      font-size: 13px;
     }
     .console-tabs {
       width: 100%;
+      justify-content: stretch;
     }
     .console-tab-btn {
       flex: 1;
       text-align: center;
+      min-height: 38px;
+      font-size: 12.5px;
     }
     main {
       padding: 0 12px;
-      margin: 14px auto;
+      margin: 12px auto;
     }
     .panel-row-upper {
       flex-direction: column;
       align-items: stretch;
+      gap: 10px;
     }
     .filter-cluster {
       overflow-x: auto;
       flex-wrap: nowrap;
       padding-bottom: 4px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-cluster::-webkit-scrollbar {
+      display: none;
     }
     .cmd-filter-btn {
       flex-shrink: 0;
     }
     .cmd-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       width: 100%;
-      justify-content: space-between;
+      gap: 6px;
     }
     .cmd-actions .btn-gaming {
-      flex: 1;
+      width: 100%;
       justify-content: center;
+      min-height: 38px;
+      font-size: 12px;
     }
     .domain-master-header {
       flex-direction: column;
       align-items: flex-start;
+      gap: 8px;
     }
     .cards-grid-layout {
       grid-template-columns: 1fr;
+    }
+    .feature-console-card {
+      padding: 14px;
+    }
+    .hud-check-pill {
+      min-height: 40px;
+      padding: 6px 14px;
+      font-size: 12px;
+    }
+    .modal-frame {
+      max-height: 92vh;
+      width: 96%;
+    }
+    .modal-card-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .modal-card-votes {
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .consensus-telemetry-banner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .telemetry-stats-grid {
+      grid-template-columns: 1fr 1fr;
     }
   }
 </style>
@@ -1097,7 +1228,7 @@
       </div>
       <div>
         <div class="brand-title">GHOSTLY <span class="brand-badge">PARITY MATRIX</span></div>
-        <div class="brand-sub">Platform Parity Engine • Ryco & Ash Review Deck</div>
+        <div class="brand-sub">Platform Parity Engine &bull; Ryco & Ash Review Deck</div>
       </div>
     </div>
 
@@ -1126,36 +1257,28 @@
     <div class="command-panel">
       <div class="panel-row-upper">
         <div class="filter-cluster">
-          <button class="cmd-filter-btn active" onclick="setQuickFilter('all', this)">All Features (467)</button>
-          <button class="cmd-filter-btn mutual-filter" onclick="setQuickFilter('mutual', this)">Mutual Agreed (<span id="pillCountMutual">0</span>)</button>
-          <button class="cmd-filter-btn ryco-filter" onclick="setQuickFilter('ryco', this)">Ryco's Picks (<span id="pillCountRyco">0</span>)</button>
-          <button class="cmd-filter-btn ash-filter" onclick="setQuickFilter('ash', this)">Ash's Picks (<span id="pillCountAsh">0</span>)</button>
-          <button class="cmd-filter-btn" onclick="setQuickFilter('diff', this)">Differences (<span id="pillCountDiff">0</span>)</button>
+          <button class="cmd-filter-btn active" onclick="setQuickFilter('all', this)">All (467)</button>
+          <button class="cmd-filter-btn" onclick="setQuickFilter('mutual', this)">Agreed</button>
+          <button class="cmd-filter-btn" onclick="setQuickFilter('ryco', this)">Ryco</button>
+          <button class="cmd-filter-btn" onclick="setQuickFilter('ash', this)">Ash</button>
+          <button class="cmd-filter-btn" onclick="setQuickFilter('diff', this)">Split</button>
         </div>
 
         <div class="cmd-actions">
-          <button class="btn-gaming btn-gaming-primary" onclick="copyShareLink()">Share Link with Ash</button>
+          <button class="btn-gaming btn-gaming-primary" onclick="copyShareLink()">Share with Ash</button>
           <button class="btn-gaming btn-gaming-wa" onclick="copyWhatsAppSummary()">WhatsApp</button>
           <button class="btn-gaming btn-gaming-panel" onclick="exportSelectionsJson()">Export</button>
           <button class="btn-gaming btn-gaming-panel" onclick="triggerJsonImport()">Import</button>
-          <input type="file" id="jsonUploadInput" accept=".json" style="display:none;" onchange="handleJsonUpload(this)">
         </div>
       </div>
 
-      <div class="cmd-search-wrap">
-        <svg class="cmd-search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-        <input type="text" class="cmd-search-input" id="filterSearchInput" placeholder="Search across all 467 features, settings, rules..." oninput="handleSearchFilter(this.value)">
-      </div>
+      <input type="text" class="search-input-box" id="searchInput" placeholder="Search across all 467 features..." oninput="handleSearchFilter(this.value)">
     </div>
 
-    <!-- Category Nav Strip -->
-    <div class="category-strip" id="categoryNavStrip">
-      <button class="category-pill-btn active" onclick="setCategoryFilter('all', this)">All Categories</button>
-    </div>
+    <!-- Category Strip -->
+    <div class="category-strip" id="categoryNavStrip"></div>
 
-    <!-- Cards Container -->
+    <!-- Matrix Cards Container -->
     <div id="matrixCardsContainer"></div>
   </section>
 
@@ -1164,115 +1287,105 @@
     
     <!-- Blind Review Lock Screen -->
     <div class="blind-lock-panel" id="blindLockCard">
-      <div class="lock-crest">&#128274;</div>
-      <div class="lock-heading">Blind Alignment Review Active</div>
-      <div class="lock-subtext">
-        To prevent premature bias or discussion during feature screening, the consensus distribution and item breakdowns unlock once both Ryco and Ash have marked their reviews as completed.
+      <div class="blind-lock-icon">&#128274;</div>
+      <div class="blind-lock-title">Consensus Deck Locked</div>
+      <div class="blind-lock-desc">
+        To prevent mutual bias during evaluation, full consensus comparisons and scorecards remain locked until both Ryco and Ash complete their reviews.
       </div>
-      
-      <div class="tracker-duo">
-        <div class="tracker-card">
-          <div class="tracker-name ryco">Ryco (Blue)</div>
-          <div class="tracker-status-line" id="rycoStatusText">In Progress (0 picks)</div>
+
+      <div class="blind-review-track">
+        <div class="reviewer-finish-card" id="lockCardRyco">
+          <div class="rev-name-group">
+            <div class="rev-title" style="color:var(--ryco-blue);">Ryco (Reviewer 1)</div>
+            <div class="rev-status-lbl" id="lockStatusRyco">Evaluating features...</div>
+          </div>
+          <button class="btn-mark-done" id="lockBtnRyco" onclick="submitActiveReview('ryco')">Mark Complete</button>
         </div>
-        <div class="tracker-card">
-          <div class="tracker-name ash">Ash (Amber)</div>
-          <div class="tracker-status-line" id="ashStatusText">Waiting for Review</div>
+
+        <div class="reviewer-finish-card" id="lockCardAsh">
+          <div class="rev-name-group">
+            <div class="rev-title" style="color:var(--ash-amber);">Ash (Reviewer 2)</div>
+            <div class="rev-status-lbl" id="lockStatusAsh">Evaluating features...</div>
+          </div>
+          <button class="btn-mark-done" id="lockBtnAsh" onclick="submitActiveReview('ash')">Mark Complete</button>
         </div>
       </div>
 
-      <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-        <button class="btn-gaming btn-gaming-primary" id="btnSubmitMyReview" onclick="submitActiveReview()">
-          Mark My Review as Complete
-        </button>
-        <button class="btn-gaming btn-gaming-panel" onclick="bypassBlindLock()">
-          Reveal Results Now (Preview)
-        </button>
-      </div>
+      <button class="btn-bypass-lock" onclick="bypassBlindLock()">
+        Preview Consensus Now (Bypass Blind Lock) &rarr;
+      </button>
     </div>
 
-    <!-- Unlocked Dashboard Deck -->
+    <!-- Unlocked Consensus Deck -->
     <div class="dashboard-unlocked-deck" id="unlockedDeck">
-      <!-- KPI Stats Row -->
-      <div class="kpi-stat-deck">
-        <div class="kpi-tile kpi-all">
-          <div class="kpi-caption">Total Discord Scope</div>
-          <div class="kpi-number">467</div>
-          <div class="kpi-footnote">Evaluated platform specifications</div>
+      <div class="consensus-telemetry-banner">
+        <div class="alignment-gauge-block">
+          <div class="gauge-circle" id="gaugeCircle">
+            <span class="gauge-val-text" id="gaugeValText">0%</span>
+          </div>
+          <div>
+            <div class="gauge-meta-title">Mutual Alignment Index</div>
+            <div class="gauge-meta-sub" id="gaugeMetaDesc">Mutual consensus parity telemetry</div>
+          </div>
         </div>
-        <div class="kpi-tile kpi-ryco">
-          <div class="kpi-caption">Ryco Selected</div>
-          <div class="kpi-number" id="kpiRycoNum">0</div>
-          <div class="kpi-footnote" id="kpiRycoSub">0% of platform scope</div>
-        </div>
-        <div class="kpi-tile kpi-ash">
-          <div class="kpi-caption">Ash Selected</div>
-          <div class="kpi-number" id="kpiAshNum">0</div>
-          <div class="kpi-footnote" id="kpiAshSub">0% of platform scope</div>
-        </div>
-        <div class="kpi-tile kpi-mutual">
-          <div class="kpi-caption">Mutual Consensus</div>
-          <div class="kpi-number" id="kpiMutualNum">0</div>
-          <div class="kpi-footnote" id="kpiMutualSub">Both agreed</div>
-        </div>
+
+        <button class="btn-gaming btn-gaming-wa" onclick="copyWhatsAppSummary()">Copy Report for WhatsApp</button>
       </div>
 
-      <!-- Alignment Proportional Bar -->
-      <div class="analytics-pod">
-        <div class="analytics-pod-header">
-          <div class="pod-title-block">
-            <h3>Consensus Distribution</h3>
-            <p>Visual alignment breakdown of feature selections between Ryco and Ash</p>
-          </div>
-          <button class="btn-gaming btn-gaming-wa" onclick="copyWhatsAppSummary()">Copy Report for WhatsApp</button>
+      <!-- Telemetry Stats Grid -->
+      <div class="telemetry-stats-grid">
+        <div class="stat-card-item">
+          <div class="stat-num-val" id="statValTotal" style="color:var(--text-primary);">467</div>
+          <div class="stat-card-lbl">Total Features</div>
         </div>
-
-        <div class="alignment-strip-track">
-          <div class="strip-seg seg-mutual" id="segMutualBar" style="width: 0%;"></div>
-          <div class="strip-seg seg-ryco" id="segRycoBar" style="width: 0%;"></div>
-          <div class="strip-seg seg-ash" id="segAshBar" style="width: 0%;"></div>
-          <div class="strip-seg seg-open" id="segOpenBar" style="width: 100%;">467 Open</div>
+        <div class="stat-card-item">
+          <div class="stat-num-val" id="statValMutual" style="color:var(--ice-cyan);">0</div>
+          <div class="stat-card-lbl">Mutual Consensus</div>
         </div>
-
-        <div class="strip-legend-bar">
-          <div class="legend-unit"><div class="legend-cube" style="background:var(--ice-cyan)"></div> Mutual Consensus (Both Agreed)</div>
-          <div class="legend-unit"><div class="legend-cube" style="background:var(--ryco-blue)"></div> Ryco Only (Blue)</div>
-          <div class="legend-unit"><div class="legend-cube" style="background:var(--ash-amber)"></div> Ash Only (Amber)</div>
-          <div class="legend-unit"><div class="legend-cube" style="background:var(--surface-elevated); border:1px solid var(--border)"></div> Unselected / Open</div>
+        <div class="stat-card-item">
+          <div class="stat-num-val" id="statValRyco" style="color:var(--ryco-blue);">0</div>
+          <div class="stat-card-lbl">Ryco Selected</div>
+        </div>
+        <div class="stat-card-item">
+          <div class="stat-num-val" id="statValAsh" style="color:var(--ash-amber);">0</div>
+          <div class="stat-card-lbl">Ash Selected</div>
         </div>
       </div>
 
       <!-- Domain Matrix Cards Grid -->
-      <div class="analytics-pod">
-        <div class="pod-title-block">
-          <h3>Domain Alignment Matrix (13 Domains)</h3>
-          <p>Click "Inspect Domain" to view exact questions and individual reviewer votes</p>
-        </div>
-        <div class="domains-console-grid" id="domainsDeckGrid"></div>
-      </div>
+      <div class="domains-deck-grid" id="domainsDeckGrid"></div>
     </div>
   </section>
 </main>
 
-<!-- Drill-down Details Modal -->
-<div id="drillModal">
+<!-- Drill-down modal for "See All" domain items -->
+<div class="modal-overlay" id="drillModal">
   <div class="modal-frame">
-    <div class="modal-frame-head">
-      <div class="modal-frame-title">
-        <h3 id="drillModalTitle">Domain Items Breakdown</h3>
-        <p id="drillModalDesc">Detailed vote audit across all features in this category</p>
+    <div class="modal-header">
+      <div>
+        <div class="modal-title-text" id="drillModalTitle">Domain Audit</div>
+        <div class="modal-desc-text" id="drillModalDesc">Auditing itemized selections for both reviewers</div>
       </div>
-      <button class="modal-dismiss-btn" onclick="closeDrillModal()">&times;</button>
+      <button class="modal-btn-close" onclick="closeDrillModal()">&times;</button>
     </div>
-    <div class="modal-frame-body" id="drillModalItems"></div>
+    <div class="modal-body-scroll" id="drillModalItems"></div>
   </div>
 </div>
 
-<div id="toastNotification"></div>
+<div class="toast-notif" id="toastNotif">Notification</div>
+<input type="file" id="jsonFileInput" accept=".json" style="display:none;" onchange="handleJsonUpload(event)">
 
 <script>
   const DATA = [{"category_id": "user_settings", "title": "1. User Settings & Account Management", "description": "Client account identity, authentication security, session hardware, and privacy configurations.", "sections": [{"subtitle": "1.1 My Account", "items": [["Username", "Unique platform-wide handle (lowercase alphanumeric without discriminator tag)."], ["Display Name", "Public visual name shown across friends, DMs, and non-overridden servers."], ["Email Address", "Registered email address with obfuscation and 'Reveal Email' button."], ["Phone Number", "SMS verification phone number attached to account for security verification."], ["Password Change", "Modal requiring current password verification before setting a new password."], ["Two-Factor Authentication (2FA)", "TOTP authenticator app integration (Google Authenticator, Authy, etc.)."], ["SMS Backup Authentication", "Secondary SMS fallback option if authenticator app is unavailable."], ["Passkeys & Security Keys", "WebAuthn / FIDO2 hardware keys (YubiKey, Windows Hello, Touch ID)."], ["View & Download Backup Codes", "Set of 10 emergency single-use 8-digit emergency recovery codes."], ["Disable Account", "Temporarily deactivates account; preserves data while rendering user invisible."], ["Delete Account", "Permanently schedules account deletion with grace period (requires password and 2FA)."]]}, {"subtitle": "1.2 Profiles (Global & Server-Specific)", "items": [["Global Display Name", "Fallback display name applied across the entire platform."], ["Pronouns", "Optional text field displaying user pronouns on profile cards."], ["Global Avatar", "Primary user avatar (PNG, JPG, or animated GIF)."], ["Avatar Decoration", "Animated cosmetic border overlay wrapping around the user avatar."], ["Profile Effect", "Full animated visual effect playing across the profile modal on open."], ["Profile Banner", "Header banner image or custom hex color palette for the profile card."], ["About Me Bio", "Markdown-supported biographical text area (max 190 characters)."], ["Badges Display", "Row of account badges (HypeSquad, Active Developer, Early Supporter, Nitro)."], ["Server-Specific Nickname", "Overridden display name visible only within a specific server."], ["Server-Specific Avatar", "Unique avatar image displayed exclusively in a specific server."], ["Server-Specific Banner", "Unique profile banner displayed exclusively in a specific server."], ["Server-Specific Bio", "Custom About Me bio visible exclusively in a specific server."]]}, {"subtitle": "1.3 Privacy & Safety", "items": [["Direct Message Spam Filter", "Automated media scanner: 'Filter all DMs', 'Scan DMs from non-friends', or 'Do not scan'."], ["Server Direct Messages Default", "Master toggle allowing or disallowing direct messages from members of newly joined servers."], ["Allow DMs from Age-Restricted Servers", "Toggle permitting direct messages from members of NSFW-designated servers."], ["Activity Status Display", "Master toggle: 'Display current activity as a status message' (Rich Presence)."], ["Share Activity Status in Large Servers", "Controls whether activity status is broadcast to servers with >200 members."], ["Telemetry: Data to Improve Discord", "Opt-in/opt-out toggle for operational metrics and interaction logging."], ["Telemetry: Personalize Discord Experience", "Controls personalized game recommendations and content suggestions."], ["GDPR / Data Privacy Export", "Generates full downloadable ZIP archive of all user messages, logs, and activity."], ["Request Account Deletion via Privacy", "Direct legal GDPR/CCPA data eradication mechanism."], ["Profile Privacy Controls", "Granular privacy settings controlling who can see mutual servers, mutual friends, and profile activity."], ["Sponsored Content Personalization", "Opt-out toggle disabling personalization of in-app sponsored game quests, recommendations, and partner ads."]]}, {"subtitle": "1.4 Family Center", "items": [["Parent-Teen Linking via QR Code", "Secure pairing between parent and minor account without exposing private message text."], ["Weekly Activity Summary", "Dashboard showing new friends added, servers joined, and voice call participants."], ["Family Center Email Reports", "Automated weekly email digests summarizing teenager account safety metrics."]]}, {"subtitle": "1.5 Authorized Apps", "items": [["OAuth2 Application Directory", "List of external web applications and bots granted account permissions."], ["Permission Scopes Display", "Details scopes granted (identify, email, guilds, connections, rpc)."], ["Revoke Access Action", "Immediately terminates OAuth2 refresh tokens for selected third-party app."]]}, {"subtitle": "1.6 Devices & Sessions", "items": [["Active Sessions Ledger", "List of all active hardware logins (Desktop, Web Browser, Mobile, Console)."], ["Session Details", "Displays operating system, client version, IP address, geographical location, and last active time."], ["Log Out Individual Session", "Remotely revokes session token for a specific device."], ["Log Out All Other Sessions", "Emergency button revoking every active session token except current client."]]}, {"subtitle": "1.7 Connections", "items": [["Linked Account Integrations", "Supports Steam, Spotify, Twitch, YouTube, GitHub, Twitter/X, Reddit, Battle.net, PlayStation, Xbox, Epic Games, Riot Games, TikTok, Crunchyroll, PayPal, eBay, and custom domain proof."], ["Display on Profile Toggle", "Controls whether each linked platform icon and account name is publicly visible."], ["Live Rich Presence Sync", "Live broadcast of current Spotify track with 'Listen Along' sync or Steam game status."]]}, {"subtitle": "1.8 Clips", "items": [["Clips Recording Toggle", "Enables GPU-buffered background shadow recording of screen share/game."], ["Clip Hotkey Binding", "Custom keyboard shortcut to save the last buffer snippet to disk."], ["Clip Duration Selector", "Configurable buffer duration: 30 seconds, 1 minute, or 2 minutes."], ["Storage Location Picker", "Local filesystem directory selector for saved MP4 clips."], ["Audio Source Capture", "Toggle to include local microphone audio alongside application/game audio."]]}, {"subtitle": "1.9 Friend Requests", "items": [["Everyone Friend Requests", "Permits any platform user to dispatch incoming friend requests."], ["Friends of Friends", "Restricts incoming requests to users who share at least one mutual friend."], ["Server Members", "Restricts incoming requests to users sharing at least one common server."]]}]}, {"category_id": "billing", "title": "2. Billing, Subscriptions & Monetization", "description": "Platform monetization tiers, server boosting perks, gift inventories, and payment vaults.", "sections": [{"subtitle": "2.1 Nitro & Nitro Basic", "items": [["Nitro Basic Tier", "Entry tier: global custom emojis & stickers, 50MB file uploads, Nitro badge."], ["Full Nitro Tier", "Full tier: 500MB uploads, 4K 60fps streaming, 2 free Server Boosts, custom themes, custom sounds everywhere."], ["Custom Emoji Anywhere", "Grants cross-server usage of custom emojis and animated emojis."], ["Custom Stickers Anywhere", "Grants cross-server dispatching of custom stickers."], ["HD Screen Streaming", "Unlocks 1080p, 1440p, and 4K source resolution at 60fps in voice/video calls."], ["Increased Message Length", "Expands message character ceiling from standard 2,000 characters to 4,000 characters."], ["Server Join Ceiling Expansion", "Expands max joined server cap from standard 100 servers to 200 servers."]]}, {"subtitle": "2.2 Server Boosting", "items": [["Boost Level 1 Perks", "+50 emoji slots (100 total), 128kbps audio quality, 720p 60fps stream, custom invite splash."], ["Boost Level 2 Perks", "+50 emoji slots (150 total), 256kbps audio quality, 1080p 60fps stream, 50MB uploads, server banner."], ["Boost Level 3 Perks", "+100 emoji slots (250 total), 384kbps audio quality, 100MB uploads, vanity URL (discord.gg/name), animated banner."], ["Boost Slot Management", "Allows purchasing boost tokens and transferring them between different servers with a 7-day cooldown."], ["Server Boost Badge", "Evolving profile badge showing how long user has continuously boosted servers."]]}, {"subtitle": "2.3 Subscriptions & Gift Inventory", "items": [["Active Subscriptions Directory", "Management dashboard for active recurring platform and server subscriptions."], ["Gift Inventory", "Vault holding purchased unredeemed Nitro or boost gift links."], ["Redeem Code Input Field", "Promo code activation field for promotional partner trials."], ["Gift Claim History", "Audit ledger of redeemed and expired gift codes."]]}, {"subtitle": "2.4 Billing & Payment Methods", "items": [["Credit / Debit Card Vault", "Saved Visa, Mastercard, American Express card storage with billing address."], ["Alternative Payment Methods", "Integration with PayPal, iDEAL, Sofort, Paysafecard, and regional payment providers."], ["Billing History & Invoices", "Downloadable PDF receipts and transaction ledger with dates and order IDs."]]}, {"subtitle": "2.5 Shop, Quests & Collectibles", "items": [["Discord Shop & Marketplace", "In-app storefront for purchasing cosmetic avatar decorations, profile effects, bundles, and seasonal items."], ["Profile Nameplates", "Custom stylized cosmetic plaques and nameplates rendering behind user display names in chats and profiles."], ["Profile Frames", "Cosmetic decorative framing borders displayed around user profile cards."], ["Discord Orbs Virtual Currency", "Earnable platform virtual currency rewarded for completing gaming quests and in-app engagement."], ["Orbs Shop", "Redemption marketplace where users exchange accumulated Orbs for exclusive virtual cosmetics, profile flair, and temporary perks."], ["Discord Quests", "Sponsored developer quests requiring users to stream or play an integrated game for 15 minutes to earn badges and digital loot."], ["Game Shops & Partner Bundles", "Direct in-app checkout purchasing in-game cosmetic bundles and digital goods for external partnered games."]]}]}, {"category_id": "app_settings", "title": "3. App Settings & Client Engine", "description": "Desktop application theming, audio/video encoding pipelines, notifications, hotkeys, and system integration.", "sections": [{"subtitle": "3.1 Appearance", "items": [["Theme Selector", "Options: Dark, Light, Midnight (Pure OLED 100% black), and Sync with Computer."], ["Color Palette Themes", "Custom gradient themes for client background, panels, and borders."], ["Message Display Mode", "Cozy (spacious with user avatars) vs Compact (dense IRC-style layout with usernames only)."], ["Chat Font Scaling Slider", "Adjusts base typography size from 12px to 24px with real-time preview."], ["Space Between Message Groups Slider", "Adjusts vertical spacing between consecutive message blocks (0px to 24px)."], ["Client Zoom Level Slider", "Electron UI zoom scaling (80%, 90%, 100%, 110%, 125%, 150%)."]]}, {"subtitle": "3.2 Accessibility", "items": [["Saturation Adjustment Slider", "Controls color intensity across all UI elements and badges (0% to 100%)."], ["Reduced Motion Mode", "Toggle: Sync with OS, Enable, or Disable (removes UI animations and page transitions)."], ["Auto-Play GIFs Toggle", "Controls whether animated GIFs play automatically or require mouse hover."], ["Play Animated Emojis on Hover Toggle", "Restricts animated emoji looping to hover-only to prevent visual clutter."], ["Sticker Animations Setting", "Options: Always Animate, Animate on Interaction, or Never Animate."], ["Text-to-Speech Speed Slider", "Controls speech synthesis speed for /tts messages."], ["High Contrast Mode", "Enforces distinct border highlights around focused active elements for accessibility."]]}, {"subtitle": "3.3 Voice & Audio Pipeline", "items": [["Input Device Selector", "Audio capture hardware device dropdown with automatic default detection."], ["Output Device Selector", "Audio playback hardware device dropdown with automatic default detection."], ["Input Volume Slider", "Microphone pre-amp gain adjustment slider (0% to 100%)."], ["Output Volume Slider", "Master incoming audio playback volume slider (0% to 200%)."], ["Input Mode: Voice Activity", "Microphone broadcasts automatically based on volume threshold."], ["Input Mode: Push-to-Talk", "Microphone transmits audio only while a designated hotkey is held."], ["Input Sensitivity Slider & Auto-Sensitivity", "Manual decibel gate slider (-100dB to 0dB) with optional auto-calibration."], ["Push-to-Talk Release Delay Slider", "Buffer duration keeping mic open after releasing hotkey (0ms to 2000ms)."], ["Mic Test Loopback ('Let's Check')", "Real-time audio feedback visualizer allowing users to hear their own microphone."], ["Audio Subsystem Selector", "Engine selection: Standard (modern WebRTC), Legacy, or Experimental."], ["Echo Cancellation", "Acoustic echo cancellation preventing speaker feedback into microphone."], ["Noise Suppression Engine", "Selection between Krisp (AI neural net voice isolation), Standard (RNNoise / WebRTC filter), or None."], ["Automatic Gain Control (AGC)", "Normalizes microphone input levels automatically across quiet and loud speakers."], ["Quality of Service (QoS) High Packet Priority", "Tags voice UDP packets with DSCP flags for router traffic prioritization."], ["Audio Ducking / Attenuation Slider", "Lowers volume of other applications by 0% to 100% when voice activity occurs."], ["Attenuation Mode: 'When I Speak'", "Applies ducking while the local user is transmitting audio."], ["Attenuation Mode: 'When Others Speak'", "Applies ducking while incoming voice packets from other callers are active."]]}, {"subtitle": "3.4 Video & Screen Sharing", "items": [["Camera Device Dropdown", "Webcam / video capture device selector."], ["Video Test Canvas", "Live preview feed testing camera framing and exposure."], ["Virtual Background Blur", "Applies AI background blur to camera video stream."], ["Custom Video Backgrounds", "Upload custom static image or select preset virtual environment."], ["Screen Capture: Application Window", "Captures specific running executable window while omitting OS desktop."], ["Screen Capture: Entire Screen", "Captures full desktop display monitor (Display 1, Display 2, etc.)."], ["Stream Resolution Picker", "Options: 720p, 1080p, 1440p, or Source resolution."], ["Stream Framerate Picker", "Options: 15 fps, 30 fps, or 60 fps."], ["Share Application Audio Toggle", "Hooks and broadcasts audio specifically from the shared application window."], ["Hardware Acceleration for Video Codecs", "Utilizes GPU hardware encoding/decoding for H.264, HEVC/H.265, AV1, VP8, and VP9."], ["OpenH264 Codec Provided by Cisco", "Toggle enabling Cisco OpenH264 WebRTC codec binary."]]}, {"subtitle": "3.5 Text, Images & Chat Formatting", "items": [["Show Images & Stickers Posted as Links", "Inline rendering of external image URLs."], ["Show OpenGraph Link Previews", "Renders rich preview cards (title, summary, banner image) for posted links."], ["Convert Emoticons to Emoji Automatically", "Automatically converts text emoticons (like :-) or <3) into graphical emojis."], ["Spoiler Content Display Mode", "Options: 'On click' (masked behind black bar), 'On servers I moderate', or 'Always visible'."], ["Show Thread Previews in Chat", "Renders collapsible thread starter card directly inside the parent channel stream."]]}, {"subtitle": "3.6 Notifications & Sound FX", "items": [["Desktop Notifications Toggle", "OS native toast notification popups when messages or mentions occur."], ["Flash Taskbar Icon", "Flashes taskbar icon when unread messages or mentions arrive."], ["Taskbar Unread Badge Counter", "Displays red numeric badge indicator on taskbar/dock icon."], ["Push Notification Inactivity Timeout", "Idle timer (1 min to 10 mins) before redirecting notifications to mobile device."], ["Text-to-Speech Notifications", "Options: 'Never', 'For all channels', or 'For current selected channel'."], ["Sound FX: Message Received", "Audio chime played when receiving a direct message or channel mention."], ["Sound FX: Deafen & Undeafen", "Distinct tones played when toggling headphone deafen."], ["Sound FX: Mute & Unmute", "Distinct tones played when toggling microphone mute."], ["Sound FX: Voice Channel Connect", "Audio cue played when connecting to a voice channel."], ["Sound FX: Voice Channel Disconnect", "Audio cue played when hanging up or disconnecting from a voice channel."], ["Sound FX: Push-to-Talk Activate & Deactivate", "Short clicks signaling mic open and close states."], ["Sound FX: Incoming & Outgoing Call Ringing", "Continuous ringtone for 1-on-1 and group DM voice calls."], ["Sound FX: Stream Start & Stream Stop", "Audio cues signaling screen share broadcast status."], ["Sound FX: User Join & User Leave", "Chimes played when other participants enter or exit your current voice room."], ["Sound FX: Activity Launch", "Audio alert when an in-call activity or game begins."], ["Community Activity Notification Digests", "Email and client digests of recommended server activity and trending topics."], ["Emoji Reaction Notifications", "Mobile push notification alert delivered when other users add an emoji reaction to your messages."], ["Friends Online Notifications", "Alert delivered when specific close friends or favorites come online and start gaming."], ["Mobile Call Integration (CallKit / Telecom)", "Hooks incoming voice/video calls directly into the mobile OS native incoming call screen."]]}, {"subtitle": "3.7 Keybinds", "items": [["Push-to-Talk Hotkey", "Key or mouse button binding to transmit microphone audio."], ["Push-to-Mute Hotkey", "Key binding to temporarily mute microphone while held."], ["Toggle Mute Hotkey", "Global hotkey toggling microphone mute on and off."], ["Toggle Deafen Hotkey", "Global hotkey toggling headset audio deafen on and off."], ["Toggle Voice Activity Hotkey", "Switches input mode between Voice Activity and Push-to-Talk."], ["Toggle Screen Share Hotkey", "Quick toggle to start or stop screen broadcast."], ["Toggle Streamer Mode Hotkey", "Instant hotkey enabling/disabling privacy streamer mode."], ["Navigate Between Channels Hotkeys", "Keyboard shortcuts (Alt + Up / Alt + Down) cycling through channels."], ["Mark Server as Read Hotkey", "Shortcut (Shift + Esc) marking all channels in current server as read."]]}, {"subtitle": "3.8 Language, Windows OS & Advanced", "items": [["Interface Language Selector", "Localization dropdown supporting 30+ international languages."], ["Open Discord on Computer Startup", "Automatically launches client when operating system boots."], ["Start Minimized", "Launches client directly to system tray in background without opening window."], ["Minimize to System Tray", "Minimizes application to tray icon instead of keeping it in taskbar."], ["Close Button Action", "Configures whether clicking 'X' minimizes to tray or terminates process."], ["Streamer Mode Auto-Enable", "Automatically triggers streamer mode when OBS Studio or XSplit is detected running."], ["Streamer Mode: Hide Personal Information", "Obfuscates email, phone number, and Discord handle on screen."], ["Streamer Mode: Hide Invite Links", "Masks server invite codes to prevent stream viewers from joining."], ["Streamer Mode: Disable Sounds & Notifications", "Suppresses all desktop popups and notification audio chimes."], ["Developer Mode Toggle", "Enables 'Copy ID' button in right-click context menus for users, messages, channels, and guilds."], ["Hardware Acceleration Toggle", "Enables or disables Chromium GPU rasterization (requires client reload)."], ["Application Test Mode", "Developer sandbox for testing Discord bot applications and in-client activities."], ["End-to-End Call Encryption (E2EE / DAVE)", "Cryptographic protocol ensuring audio and video streams in calls are encrypted end-to-end between participants."]]}]}, {"category_id": "gaming_activity", "title": "4. Activity, Gaming & Rich Presence", "description": "Game detection heuristics, live rich presence broadcasts, and in-game DirectX/OpenGL overlays.", "sections": [{"subtitle": "4.1 Activity Privacy & Rich Presence", "items": [["Display Current Activity as Status", "Master switch broadcasting current game or music to friends and mutual servers."], ["Share Activity Status by Default in New Servers", "Sets default privacy behavior for newly joined servers."], ["Allow Friends to Join Game Session", "Enables Rich Presence IPC game invites ('Join Game' / 'Spectate')."], ["Allow Voice Channel Participants to Join Game", "Enables in-call occupants to click and join the active multiplayer session."]]}, {"subtitle": "4.2 Registered Games & Game Overlay", "items": [["Detected Games Ledger", "Scans running processes and lists known games with executable paths."], ["Add Unlisted Game Manually", "Process picker allowing users to manually register custom executables."], ["Toggle In-Game Overlay Per Game", "Individual toggle enabling DirectX/Vulkan/OpenGL overlay hook for that specific title."], ["Overlay Activation Hotkey", "Configurable key combination (default Shift + `) locking/unlocking the in-game overlay."], ["Overlay Notification Position", "Dropdown selector: Top-Left, Top-Right, Bottom-Left, or Bottom-Right monitor quadrant."], ["Voice Chat Widget Display Mode", "Overlay options: 'Always Show Avatars', 'Show Only While Speaking', or 'Hide Voice Widget'."], ["Voice Widget Avatar Size", "Selector: Small vs Large participant icons inside the in-game HUD."]]}]}, {"category_id": "server_admin", "title": "5. Server (Guild) Settings & Administration", "description": "Guild identity, onboarding funnels, safety verification tiers, custom media slots, webhooks, and discovery.", "sections": [{"subtitle": "5.1 Server Overview", "items": [["Server Name", "Public name of the community server."], ["Server Icon", "Square icon upload (PNG, JPG, or animated GIF for boosted servers)."], ["Server Banner", "Header graphic rendered above channel list and on server invites."], ["Server Invite Splash", "Custom 16:9 graphic for public web browser invite landing pages."], ["Server Description", "Short summary displayed on public invite cards and discovery listings."], ["Inactive (AFK) Voice Channel", "Voice channel where idle members are automatically moved."], ["Inactive (AFK) Timeout Slider", "Inactivity timer: 1 min, 5 min, 15 min, 30 min, or 1 hour."], ["System Messages Channel", "Channel designated for automated join notifications and boost announcements."], ["Send Random Welcome Message Toggle", "Posts playful welcome prompt when a new member joins."], ["Send Prompt When Member Boosts Toggle", "Posts automated celebration message when a user boosts the server."], ["Default Notification Settings", "Configures server-wide default: 'All Messages' vs 'Only @mentions'."]]}, {"subtitle": "5.2 Server Onboarding & Community Setup", "items": [["Enable Community Toggle", "Master switch enabling Announcement channels, Forum channels, and Onboarding tools."], ["Welcome Screen Modal", "Presents top 5 recommended channels and server mission to first-time visitors."], ["Rules Screening Modal", "Requires new members to explicitly click 'Agree to Server Rules' before chatting."], ["Onboarding Questions Wizard", "Survey prompt assigning roles and unlocking specific channels based on answers."], ["Default Channels Configuration", "Mandatory channels every new member joins automatically upon onboarding completion."]]}, {"subtitle": "5.3 Safety Setup & Verification Levels", "items": [["Verification Level: None", "Unrestricted access; anyone can participate immediately."], ["Verification Level: Low", "Members must possess a verified email on their account."], ["Verification Level: Medium", "Members must be registered on the platform for longer than 5 minutes."], ["Verification Level: High", "Members must be a member of this server for longer than 10 minutes."], ["Verification Level: Highest", "Members must have a verified phone number attached to their account."], ["Explicit Media Content Filter", "Options: 'Don't scan', 'Scan media from members without roles', or 'Scan media from all members'."], ["2FA Requirement for Moderation", "Requires server administrators and moderators to have 2FA enabled to perform moderation actions."], ["Incident Management: Pause Invites", "Emergency toggle pausing all incoming invite links temporarily."], ["Incident Management: Pause Direct Messages", "Emergency toggle blocking DMs between non-friend members of this server."], ["Raid Protection Alerts", "Heuristic monitor automatically detecting and alerting moderators during abnormal spikes in member join rate."], ["CAPTCHA for Suspicious Joins", "Automatically challenges accounts flagged with risky telemetry with a CAPTCHA before allowing server entry."], ["Report Server Raid Tool", "One-click staff action reporting ongoing raid waves and associated account IDs directly to Trust & Safety."]]}, {"subtitle": "5.4 Server Custom Assets", "items": [["Server Emojis Library", "Upload static PNG and animated GIF emojis; assign names and optional role requirements."], ["Server Stickers Library", "Upload 320x320 PNG/APNG/Lottie vector stickers; assign related emoji search tags."], ["Soundboard Audio Library", "Upload up to 5-second MP3/WAV/OGG sound bites; set icon emoji and default volume."], ["Role-Gated Assets", "Restricts specific custom emojis, stickers, or sounds to designated VIP/Staff roles."]]}, {"subtitle": "5.5 Invites & Vanity URLs", "items": [["Active Invites Directory", "Table listing all valid invite links, creator, creation timestamp, and uses count."], ["Invite Expiration Selector", "Dropdown: 30 minutes, 1 hour, 6 hours, 12 hours, 1 day, 7 days, or Never."], ["Max Uses Limit Selector", "Dropdown: 1, 5, 10, 25, 50, 100, or Unlimited uses."], ["Temporary Membership Toggle", "Kicks member automatically when they disconnect unless a role is assigned."], ["Custom Vanity URL", "Custom short URL path (e.g. discord.gg/ghostly) unlocked at Boost Level 3."], ["Revoke Invite Action", "Immediately deletes an active invite link from the server."]]}, {"subtitle": "5.6 Integrations, Bots & Webhooks", "items": [["Custom Incoming Webhooks", "Creates HTTP POST endpoints to dispatch messages with custom bot usernames and avatars."], ["Installed Bot Directory", "Manages authorized bots, their command permissions, and integrated roles."], ["Slash Commands Directory", "Lists bot slash commands (/) and configures role/channel execution overrides."], ["Twitch & YouTube Integrations", "Synchronizes subscriber roles automatically with streaming channels."], ["Followed Channels Directory", "Manages crosspost announcement feeds subscribed to from other servers."], ["App Directory", "Searchable ecosystem directory allowing server admins and members to discover, test, and install verified bot apps and activities."], ["In-Call Embedded Activities Engine", "WebRTC-embedded collaborative HTML5 apps and party games (Watch Together, Sketch, etc.) running inside voice rooms."]]}, {"subtitle": "5.7 Server Discovery & Directory", "items": [["Server Discovery Checklist", "Validates requirements: 1,000+ members, server age, 2FA enabled, clean moderation record."], ["Primary Category Dropdown", "Selects category: Gaming, Music, Education, Science & Tech, Entertainment, or Hub."], ["Discovery Keywords & Tags", "Up to 10 searchable tags describing server content and interests."], ["Primary Language Selector", "Specifies the primary spoken language of the community."]]}, {"subtitle": "5.8 Server Templates", "items": [["Generate Server Template Link", "Creates cloneable blueprint capturing channel structures, categories, and role hierarchies."], ["Template Name & Description", "Configures public title and summary for the template landing page."], ["Template Preview Modal", "Displays channel breakdown and role structure before cloning."]]}, {"subtitle": "5.9 Server Subscriptions & Monetization", "items": [["Subscription Tiers Setup", "Creates paid recurring tiers with custom monthly pricing ($2.99, $4.99, etc.)."], ["Subscriber-Exclusive Roles", "Automatically assigns special roles to paying community subscribers."], ["Subscriber-Exclusive Channels", "Restricts access to VIP chat and voice channels exclusively to subscribers."], ["Payout Onboarding & Banking", "Stripe payment onboarding for server owners to receive creator earnings."]]}]}, {"category_id": "roles_permissions", "title": "6. Roles, Permissions Hierarchy & Overrides", "description": "Role inheritance hierarchies, 40+ granular bitwise permission flags, and 3-state channel security overrides.", "sections": [{"subtitle": "6.1 Role Management & Hierarchy", "items": [["Draggable Role Hierarchy", "Higher ranked roles override and manage lower roles; cannot manage higher or equal roles."], ["Role Name & Color Picker", "Custom name and hex color palette defining member badge and username tint."], ["Display Role Members Separately (Hoisting)", "Groups online users under distinct role headers in the member sidebar."], ["Allow Anyone to @mention This Role", "Permission toggle enabling non-admin members to ping the role group."], ["Role Icon", "Custom 64x64 PNG or emoji displayed next to the member username across all channels."], ["View Server as Role (Impersonate)", "Sandbox preview mode showing exactly what a user with that role can see."]]}, {"subtitle": "6.2 Base Bitwise Permission Flags (40+ Permissions)", "items": [["Administrator", "Bypasses all channel-specific restrictions and grants full server control."], ["View Audit Log", "Grants access to inspect server administrative audit logs."], ["View Server Insights", "Grants access to community analytics on member retention and engagement."], ["Manage Server", "Allows editing server name, icon, banner, system channels, and region."], ["Manage Roles", "Allows creating, editing, and deleting roles ranked below user's highest role."], ["Manage Channels", "Allows creating, editing, reordering, and deleting channels and categories."], ["Kick Members", "Allows expelling non-admin members from the server."], ["Ban Members", "Allows permanently banning members and IP addresses from the server."], ["Create Instant Invite", "Allows generating invite links for new members."], ["Change Nickname", "Allows user to modify their own server-specific nickname."], ["Manage Nicknames", "Allows modifying the server nicknames of other members."], ["Manage Emojis and Stickers", "Allows uploading, renaming, and deleting custom emojis and stickers."], ["Manage Webhooks", "Allows creating, editing, and deleting HTTP POST incoming webhooks."], ["View Channels", "Fundamental read permission allowing channels to be rendered in the sidebar."], ["Send Messages", "Allows dispatching messages inside text channels."], ["Send Messages in Threads", "Allows dispatching messages inside active threads."], ["Create Public Threads", "Allows starting a public sub-conversation attached to a message."], ["Create Private Threads", "Allows starting an invite-only sub-conversation hidden from channel members."], ["Embed Links", "Allows links posted by this role to render rich OpenGraph previews."], ["Attach Files", "Allows uploading files, images, videos, and documents to chat."], ["Add Reactions", "Allows adding new emoji reactions to existing messages."], ["Use External Emojis", "Allows using custom emojis from other servers if user has Nitro."], ["Use External Stickers", "Allows using custom stickers from other servers if user has Nitro."], ["Mention @everyone, @here, and All Roles", "Bypasses mention restrictions to ping all members."], ["Manage Messages", "Allows deleting messages sent by other members and pinning messages."], ["Manage Threads", "Allows archiving, unarchiving, renaming, and deleting threads."], ["Read Message History", "Allows viewing messages sent before the user entered the channel."], ["Send Text-to-Speech Messages", "Allows dispatching /tts synthesized speech messages."], ["Use Application Commands", "Allows triggering bot slash commands (/) and context menu apps."], ["Send Voice Messages", "Allows recording and posting voice notes."], ["Connect (Voice)", "Allows connecting to voice and video channels."], ["Speak (Voice)", "Allows transmitting microphone audio inside voice channels."], ["Video (Webcam / Screen Share)", "Allows broadcasting camera feeds or sharing desktop screen."], ["Use Soundboard", "Allows playing sound bites into voice channels."], ["Use External Sounds", "Allows playing sounds from other servers if user has Nitro."], ["Use Voice Activity Detection", "Allows hands-free talking without being forced into Push-to-Talk."], ["Priority Speaker", "Lowers volume of other callers while this user speaks (Push-to-Talk Priority)."], ["Mute Members", "Allows server-muting other members' microphones in voice channels."], ["Deafen Members", "Allows server-deafening other members' audio sinks in voice channels."], ["Move Members", "Allows dragging and moving members between voice channels."], ["Request to Speak (Stage)", "Allows raising hand to request speaking rights in Stage channels."], ["Manage Events", "Allows creating, editing, and canceling scheduled server events."]]}, {"subtitle": "6.3 Channel Permission Overrides", "items": [["Category Permission Syncing", "Automatically propagates parent category permission matrix to child channel."], ["Explicit 3-Way State Per Permission Bit", "Explicitly set Allow (\u2714), Neutral (/), or Deny (\u2716) for any permission per role or user."], ["Private Channel Lock", "Removes View Channel permission from @everyone to create private staff rooms."], ["Read-Only Channel Lock", "Removes Send Messages permission from @everyone while keeping View Channel enabled."]]}]}, {"category_id": "moderation_automod", "title": "7. Moderation, AutoMod, Bans & Audit Logs", "description": "Automated regex/link/spam filtering, tamper-proof audit trails, and member disciplinary tooling.", "sections": [{"subtitle": "7.1 AutoMod Rules & Triggers", "items": [["Block Mention Spam Rule", "Intercepts messages exceeding a configurable user/role mention count (e.g. 5+ mentions)."], ["Block Suspect Content Rule", "Heuristic machine-learning filter detecting scam scripts, nitro phishing, and malware."], ["Block Harmful Links Rule", "Real-time URL blacklist checking against malware and malicious domains."], ["Custom Keyword Rule", "Comma-delimited text list holding blocked words and wildcards (*word*)."], ["Regex Rule", "Evaluates messages against custom regular expression pattern strings."], ["AutoMod Action: Block Message", "Drops message delivery and delivers an ephemeral error notice to sender."], ["AutoMod Action: Send Alert to Channel", "Dispatches an infraction log to a specified moderator channel."], ["AutoMod Action: Timeout User", "Automatically isolates member for 60s, 5m, 10m, 1h, 1d, or 1w upon rule trigger."], ["AutoMod Exemptions", "Multi-select picker exempting specific roles or channels from filtering."]]}, {"subtitle": "7.2 Audit Log", "items": [["Chronological Event Ledger", "Tamper-proof ledger showing actor, target entity, timestamp, and metadata."], ["Action Filter: Channels", "Filters: Channel Create, Update, Delete, and Permission Overwrite changes."], ["Action Filter: Members", "Filters: Member Kick, Prune, Ban, Unban, Role Update, and Nickname Update."], ["Action Filter: Voice", "Filters: Member Voice Move and Member Disconnect actions."], ["Action Filter: Roles", "Filters: Role Create, Update, and Delete operations."], ["Action Filter: Invites", "Filters: Invite Create and Delete events."], ["Action Filter: Webhooks", "Filters: Webhook Create, Update, and Delete actions."], ["Action Filter: Emojis & Stickers", "Filters: Emoji/Sticker Create, Update, and Delete events."], ["Action Filter: Messages", "Filters: Message Delete, Bulk Delete, Pin, and Unpin actions."], ["Action Filter: AutoMod", "Filters: AutoMod Rule Create/Update/Delete and Block Execution logs."], ["Filter by Moderator", "Isolates actions executed by a specific administrator or bot account."], ["State Diffs", "Color-coded before-and-after diffs showing exact property changes."]]}, {"subtitle": "7.3 Member Moderation Actions", "items": [["Searchable Member Directory", "Directory filterable by role, join date, account age, and safety signals."], ["Member Signals", "Highlights users flagged by AutoMod, unusual DM activity, or active timeouts."], ["Member Timeout Modal", "Isolates member from chatting, reacting, or speaking for set durations (60s to 28 days)."], ["Kick Member Modal", "Removes user from the server with an optional reason note for the audit log."], ["Ban Member Modal", "Permanently blacklists user and associated IP addresses."], ["Ban Message Deletion Dropdown", "Purges past messages: 'Don't delete', 'Previous 1hr', '6hr', '12hr', '24hr', '3d', or '7d'."], ["Bans Directory", "Directory of banned accounts with reason notes and an 'Unban' revocation button."], ["Member Prune Tool", "Kicks inactive members without roles who haven't logged in for 7 or 30 days (shows estimated count)."]]}]}, {"category_id": "channels_spaces", "title": "8. Channels, Categories & Specialized Spaces", "description": "Architectural spaces including text channels, voice rooms, stage channels, forums, threads, and events.", "sections": [{"subtitle": "8.1 Text Channels", "items": [["Channel Name", "Lowercase hyphenated routing slug (e.g. #general-chat)."], ["Channel Topic", "Text header description pinned to the top of the chat timeline."], ["Slowmode Slider", "Rate limits message frequency per member: Off, 5s, 10s, 15s, 30s, 1m, 2m, 5m, 10m, 15m, 30m, 1h, 2h, or 6h."], ["Age-Restricted (NSFW) Flag", "Forces a confirmation interstitial warning before entering channel."], ["Default Thread Auto-Archive", "Sets default duration before inactive threads collapse in this channel."]]}, {"subtitle": "8.2 Voice Channels", "items": [["Voice Bitrate Slider", "Configures Opus audio quality per channel (8kbps to 384kbps)."], ["User Limit Slider", "Caps max concurrent occupants (Unlimited or 1 to 99 members)."], ["RTC Region Override", "Forces voice packets to route through a specific geographical datacenter."], ["Video Stream Quality Mode", "Selects between prioritizing frame rate vs resolution for screen shares."]]}, {"subtitle": "8.3 Categories", "items": [["Category Container", "Draggable collapsible group organizing child channels under a header."], ["Category Permission Sync", "Single-click button syncing security overrides to all child channels."]]}, {"subtitle": "8.4 Announcement Channels", "items": [["Crossposting ('Publish') Button", "Broadcasts an announcement post to all external following servers."], ["Follow Channel Button", "Subscribes an external server to receive published posts automatically."]]}, {"subtitle": "8.5 Stage Channels", "items": [["Speaker vs Audience Separation", "Architectural segregation into Stage Speakers and Audience Listeners."], ["Raise Hand / Request to Speak", "Audience members submit a request; stage moderators approve or deny."], ["Stage Topic Banner", "Prominent header defining discussion theme and guest speakers."], ["Stage Moderator Controls", "Tools to invite to stage, mute speaker, or move speaker back to audience."]]}, {"subtitle": "8.6 Forum Channels", "items": [["Post Guidelines Sidebar", "Rules sidebar displayed to users before drafting a new forum post."], ["Forum Tagging System", "Pre-configured colored tags (e.g. [Bug], [Solved], [Feedback]) required on posts."], ["Default Forum Layout", "Selector between 'List View' (compact) and 'Gallery / Grid View' (card thumbnails)."], ["Default Sort Order", "Selector: 'Sort by Recent Activity' vs 'Sort by Creation Date'."], ["Default Reaction Emoji", "Automatically adds an emoji reaction button (e.g. Upvote) to every new post."]]}, {"subtitle": "8.7 Threads", "items": [["Public Threads", "Branching sub-conversations attached to a message, visible to everyone in the channel."], ["Private Threads", "Invite-only sub-conversations hidden from channel members unless manually added."], ["Auto-Archive Duration", "Inactivity timer before threads collapse: 1 hour, 24 hours, 3 days, or 1 week."], ["Thread Slowmode Slider", "Independent rate limit slider controlling message frequency within the thread."], ["Lock Thread Action", "Staff action preventing further messages from being sent in the thread."]]}, {"subtitle": "8.8 Scheduled Events", "items": [["Voice Channel Event", "Scheduled live gathering occurring inside a designated voice channel."], ["External Location Event", "Scheduled gathering occurring at an external URL (e.g. Twitch) or physical venue."], ["Event Metadata", "Event name, cover banner graphic, description, start time, and end time."], ["RSVP 'Interested' Tracking", "Members click 'Interested'; client delivers automated reminder notifications when event starts."]]}]}, {"category_id": "chat_media", "title": "9. Chat Input, Rich Media & In-Channel Tools", "description": "Message bar formatting, emoji/GIF/sticker selectors, polls, voice notes, and search filters.", "sections": [{"subtitle": "9.1 Message Input Bar", "items": [["Markdown Rich Formatting", "Bold (**text**), Italic (*text*), Strikethrough (~~text~~), Underline (__text__), Code (`code`), Code Blocks (```lang```), Blockquotes (> text), Headers (# text), Subtext (-# text), Spoilers (||text||)."], ["Emoji Picker Modal", "Searchable emoji directory with categories, recent emojis, and server custom groups."], ["GIF Picker Modal", "Tenor integration with search bar and trending emotion categories."], ["Sticker Picker Modal", "Searchable sticker pack directory with recent and favorite stickers."], ["Soundboard in Chat Button", "Allows triggering soundboard clips directly inside text chat."], ["Gift Nitro Button", "Modal allowing instant purchase of a gift subscription for a chat recipient."], ["App Launcher / Activities Button", "Launches embedded collaborative web apps (Watch Together, games)."], ["File Upload Drag-and-Drop", "Uploads files with image preview, filename editing, and 'Mark as Spoiler' checkbox."], ["Voice Note Recorder", "Microphone icon recording audio waveform with preview and instant send."], ["Poll Creation Modal", "Question field, up to 10 choices with optional emojis, duration (1h to 1w), and multiple-answers toggle."]]}, {"subtitle": "9.2 Message Rendering & Hover Actions", "items": [["Message Header", "Avatar, Display Name, Role Color, Bot 'APP' tag, and timestamp (relative + absolute on hover)."], ["Hover Action Bar", "Quick reaction buttons, Reply, Create Thread, Edit Message (if author), and More (...) options."], ["Quoted Reply Banner", "Visual quote box linking directly to parent message with opt-in @mention toggle."], ["Rich OpenGraph Embeds", "Renders title, description, author icon, field tables, image thumbnail, footer, and custom color bar."], ["Multi-Image Grid Gallery", "Mosaic rendering of up to 10 uploaded images with full-resolution lightbox viewer."], ["Inline Media Players", "Embedded HTML5 audio and video playback controls for MP3, WAV, MP4, and WebM files."], ["Spoiler Masking", "Black mask over text or blurred image thumbnail revealed only upon user click."], ["Pinned Messages Modal", "Sidebar directory listing all pinned messages in the current channel."], ["Mention Highlighting", "Yellow background tint highlighting messages containing personal or role mentions."]]}, {"subtitle": "9.3 Channel & Server Search", "items": [["Global Search Bar", "Full-text search indexed across current channel or entire server."], ["Filter: from:user", "Restricts search results to messages sent by a specific user."], ["Filter: mentions:user", "Restricts search results to messages mentioning a specific user."], ["Filter: has:link / file / image / video / sound", "Filters messages containing specific media attachments."], ["Filter: before:date / during:date / after:date", "Chronological date range filtering."], ["Filter: in:channel", "Isolates search to a specific channel or category."], ["Filter: pinned:true", "Isolates search to pinned messages."]]}]}, {"category_id": "direct_messages", "title": "10. Direct Messages, Friends & Group Chats", "description": "One-on-one private messaging, multi-user group chats, friends directory, and ringing audio calls.", "sections": [{"subtitle": "10.1 Friends Tab", "items": [["Online Friends Tab", "Lists all active friends currently online with rich presence status."], ["All Friends Tab", "Alphabetical directory of all confirmed friends."], ["Pending Requests Tab", "Lists incoming requests to accept/ignore and outgoing requests to cancel."], ["Blocked Users Tab", "Directory of blocked accounts with 'Unblock' action buttons."], ["Add Friend Input Field", "Handle entry field to send friend invitations by username."]]}, {"subtitle": "10.2 1-on-1 Direct Messages", "items": [["Private Chat Timeline", "Direct end-to-client message history between two users."], ["Direct Voice & Video Call Buttons", "Header buttons triggering audio/video call with recipient ringtone."], ["Mutual Servers List", "Profile sidebar listing all servers shared between the two users."], ["Mutual Friends List", "Profile sidebar listing all mutual friends shared between the two users."]]}, {"subtitle": "10.3 Group Direct Messages", "items": [["Group Size Cap", "Multi-user private conversation supporting up to 10 participants."], ["Add Friends to Group DM", "Modal picker adding existing friends to the conversation."], ["Rename Group DM", "Custom name field for the group conversation."], ["Custom Group Icon", "Upload square graphic for the group DM icon."], ["Start Group Call Button", "Rings all members of the group DM simultaneously for voice/video."], ["Leave Group DM Action", "Removes user from group without affecting other members."]]}]}, {"category_id": "voice_hud", "title": "11. In-Call Real-Time Controls & Audio/Video HUD", "description": "In-call control dock, screen share selector, tile grid canvas, and individual participant gain controls.", "sections": [{"subtitle": "11.1 Bottom Voice Dock", "items": [["Microphone Mute / Unmute Button", "Toggles local audio transmission with visual icon and hotkey chime."], ["Headphone Deafen / Undeafen Button", "Silences all incoming voice audio and mutes microphone simultaneously."], ["Turn on Camera Button", "Toggles local webcam video broadcast."], ["Share Screen Launcher Modal", "Presents 'Application Window' vs 'Entire Screen' tabs, resolution picker, and 15/30/60fps options."], ["Share System Audio Checkbox", "Captures and transmits operating system or application sound alongside video."], ["Soundboard Launcher Panel", "Popout tile matrix allowing immediate trigger of soundboard audio clips."], ["Disconnect Call Button", "Prominent red telephone icon terminating WebRTC peer connection."]]}, {"subtitle": "11.2 Call Viewport Controls", "items": [["Grid View vs Speaker View Toggle", "Switches between equal participant video tiles and active-speaker spotlight."], ["Popout Window (Picture-in-Picture)", "Detaches video call canvas into a floating, resizable operating system window."], ["Fullscreen Toggle", "Expands video viewport to fill entire monitor screen."], ["Active Speaker Green Ring", "Visual glowing green border highlighting participants currently talking."], ["In-Call Text Chat Side Panel", "Embedded text channel timeline accessible alongside active video feeds."], ["In-Call Activities Panel", "Side tray launching collaborative web games and apps inside the call."]]}, {"subtitle": "11.3 Per-Participant In-Call Controls", "items": [["Individual Participant Volume Slider", "Right-click slider (0% to 200%) adjusting local incoming audio gain per user."], ["Local Mute Toggle", "Locally silences an individual caller without affecting other participants."], ["Disable Video Toggle", "Locally stops incoming video feed from a specific user to conserve bandwidth."], ["Server Mute Toggle (Staff)", "Permission-gated action silencing a user across the voice room for everyone."], ["Server Deafen Toggle (Staff)", "Permission-gated action deafening a user across the voice room for everyone."]]}]}, {"category_id": "context_menus", "title": "12. Context Menus (Exhaustive Right-Click Menus)", "description": "Right-click context menus across users, messages, channels, and servers.", "sections": [{"subtitle": "12.1 User Context Menu", "items": [["Profile", "Opens user profile modal card."], ["Mention", "Inserts <@userId> syntax directly into chat input."], ["Direct Message", "Opens 1-on-1 private messaging conversation."], ["Call", "Initiates direct voice call with user."], ["Add Friend / Remove Friend", "Dispatches or revokes friend relationship."], ["Block / Unblock", "Suppresses direct messages and collapses chat messages behind warning."], ["User Volume Slider", "Local audio gain slider (0% to 200%) for this user."], ["Mute (Voice)", "Locally silences user's incoming voice audio."], ["Disable Video", "Locally disables incoming video feed from user."], ["Server Mute", "Silences user for all voice channel occupants (staff permission)."], ["Server Deafen", "Deafens user for all voice channel occupants (staff permission)."], ["Change Nickname", "Edits user's server nickname."], ["Edit Server Profile", "Edits own server-specific avatar and bio."], ["Roles Submenu", "Checklist allowing rapid assignment/removal of server roles."], ["Timeout Member", "Opens timeout duration modal (60s, 5m, 10m, 1h, 1d, 1w)."], ["Kick Member", "Opens member expulsion confirmation modal."], ["Ban Member", "Opens permanent ban and message deletion modal."], ["Copy User ID", "Copies 64-bit snowflake ID to clipboard (Developer Mode)."]]}, {"subtitle": "12.2 Message Context Menu", "items": [["Add Reaction", "Opens emoji picker to attach reaction to message."], ["Reply", "References message with optional @mention toggle."], ["Edit Message", "Replaces message body with inline editable text area."], ["Pin Message / Unpin Message", "Pins message to channel header directory."], ["Create Thread", "Branches sub-conversation starting from this message."], ["Copy Text", "Copies raw message text string to clipboard."], ["Mark Unread", "Resets unread separator to above this message."], ["Speak Message (TTS)", "Synthesizes message audio via local text-to-speech."], ["Delete Message", "Deletes message from server and broadcasts deletion event."], ["Report Message", "Submits message payload to platform Trust & Safety."], ["Copy Message Link", "Generates direct URL anchor (discord.com/channels/guild/channel/msg)."], ["Copy Message ID", "Copies message 64-bit snowflake ID to clipboard."]]}, {"subtitle": "12.3 Channel Context Menu", "items": [["Mark as Read", "Clears unread badge for channel."], ["Mute Channel", "Mutes alerts: 15m, 1h, 8h, 24h, or Until unmuted."], ["Notification Settings", "Override: Use Category Default, All Messages, @mentions, or Nothing."], ["Edit Channel", "Opens channel configuration modal."], ["Duplicate Channel", "Clones channel settings, permissions, and topics to a new channel."], ["Create Invite", "Opens instant invite creation modal."], ["Copy Channel Link", "Copies direct channel URL to clipboard."], ["Delete Channel", "Destructive action deleting channel and message history."], ["Copy Channel ID", "Copies channel 64-bit snowflake ID to clipboard."]]}, {"subtitle": "12.4 Server Context Menu", "items": [["Mark as Read", "Clears unread markers across all server channels."], ["Server Notification Settings", "Master override: All Messages, Mentions, Nothing, Suppress @everyone."], ["Privacy Settings", "Toggles DMs and activity sharing from this server."], ["Change Server Nickname", "Quick modal editing member nickname."], ["Server Settings Submenu", "Links to Overview, Roles, Moderation, Audit Log, Integrations."], ["Create Channel", "Opens channel creation modal."], ["Create Category", "Opens category creation modal."], ["Create Event", "Launches event creation wizard."], ["Leave Server", "Opens confirmation modal to exit the community."], ["Copy Server ID", "Copies server 64-bit snowflake ID to clipboard."]]}]}, {"category_id": "navigation_shell", "title": "13. Platform Navigation, Shell & Quick Switcher", "description": "Left server strip, draggable folders, Quick Switcher modal, and global mentions inbox.", "sections": [{"subtitle": "13.1 Server List & Server Folders", "items": [["Direct Messages Home Button", "Top icon navigating to Friends list and 1-on-1/Group DMs."], ["Draggable Server Icons Strip", "Vertical sidebar hosting joined server icons with unread pips."], ["Server Folders", "Allows dragging server icons together to create collapsible colored folders."], ["Add a Server Button (+)", "Modal to create a new server from scratch or from template."], ["Explore Public Servers Button (Compass)", "Opens public discovery directory of featured communities."], ["Download Apps Button", "Navigates to platform download page for mobile and desktop clients."]]}, {"subtitle": "13.2 Quick Switcher (Ctrl + K / Ctrl + T)", "items": [["Fuzzy Search Modal", "Instant keyboard-driven switcher across channels, DMs, voice rooms, and servers."], ["Recent Channels History", "Displays recently visited channels and chats for instant navigation."]]}, {"subtitle": "13.3 Global Mentions & Inbox", "items": [["Inbox Header Icon (@)", "Top bar button opening notification aggregate tray."], ["Mentions Tab", "Lists recent messages where user was @mentioned across all servers."], ["Unreads Tab", "Aggregates unread message channels into a quick catch-up stream."], ["Scheduled Events Tray", "Displays upcoming server events user has marked as 'Interested'."]]}]}];
-  const STORAGE_KEY = "ghostly_discord_matrix_mobile_v1";
+  const STORAGE_KEYS = [
+    "ghostly_discord_matrix_mobile_v1",
+    "ghostly_discord_matrix_midnight_frost_v1",
+    "ghostly_discord_matrix_spectre_v1",
+    "ghostly_discord_matrix_clean_v2",
+    "ghostly_discord_matrix_state_clean_v1",
+    "ghostly_discord_checklist_state_v2"
+  ];
+  const PRIMARY_KEY = "ghostly_discord_matrix_mobile_v1";
 
   let reviewState = {};
   let metaState = { rycoCompleted: false, ashCompleted: false, forceUnlocked: false };
@@ -1300,14 +1413,18 @@
         showToast("Loaded selections from shared link!");
       } catch (e) {}
     } else {
-      try {
-        const s = localStorage.getItem(STORAGE_KEY);
-        if (s) {
-          const p = JSON.parse(s);
-          reviewState = p.items || p;
-          if (p.meta) metaState = p.meta;
-        }
-      } catch (e) {}
+      // Try to load from any existing storage key
+      for (const k of STORAGE_KEYS) {
+        try {
+          const s = localStorage.getItem(k);
+          if (s) {
+            const p = JSON.parse(s);
+            reviewState = p.items || p;
+            if (p.meta) metaState = p.meta;
+            break;
+          }
+        } catch (e) {}
+      }
     }
 
     updateReviewerUI();
@@ -1318,61 +1435,80 @@
 
   function saveState() {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ items: reviewState, meta: metaState }));
+      localStorage.setItem(PRIMARY_KEY, JSON.stringify({ items: reviewState, meta: metaState }));
     } catch (e) {}
-    refreshStats();
   }
 
-  function setReviewer(name) {
-    currentReviewer = name;
+  function setReviewer(role) {
+    currentReviewer = role;
     updateReviewerUI();
-    showToast(`Active reviewer: ${name === "ryco" ? "Ryco (Blue)" : "Ash (Amber)"}`);
+    renderMatrixDeck();
+    showToast("Active Reviewer: " + (role === "ryco" ? "Ryco" : "Ash"));
   }
 
   function updateReviewerUI() {
-    document.getElementById("btnRoleRyco").classList.toggle("active", currentReviewer === "ryco");
-    document.getElementById("btnRoleAsh").classList.toggle("active", currentReviewer === "ash");
+    const rBtn = document.getElementById("btnRoleRyco");
+    const aBtn = document.getElementById("btnRoleAsh");
+    if (currentReviewer === "ryco") {
+      rBtn.classList.add("active");
+      aBtn.classList.remove("active");
+    } else {
+      aBtn.classList.add("active");
+      rBtn.classList.remove("active");
+    }
   }
 
   function switchConsoleTab(tab) {
-    const isMatrix = tab === "matrix";
-    document.getElementById("viewMatrixSection").classList.toggle("active", isMatrix);
-    document.getElementById("viewDashboardSection").classList.toggle("active", !isMatrix);
-    document.getElementById("tabBtnMatrix").classList.toggle("active", isMatrix);
-    document.getElementById("tabBtnDash").classList.toggle("active", !isMatrix);
-    if (!isMatrix) renderDashboardDeck();
+    const mSec = document.getElementById("viewMatrixSection");
+    const dSec = document.getElementById("viewDashboardSection");
+    const mBtn = document.getElementById("tabBtnMatrix");
+    const dBtn = document.getElementById("tabBtnDash");
+
+    if (tab === "matrix") {
+      mSec.classList.add("active");
+      dSec.classList.remove("active");
+      mBtn.classList.add("active");
+      dBtn.classList.remove("active");
+    } else {
+      dSec.classList.add("active");
+      mSec.classList.remove("active");
+      dBtn.classList.add("active");
+      mBtn.classList.remove("active");
+      renderDashboardDeck();
+    }
   }
 
   function setQuickFilter(f, btn) {
     currentQuickFilter = f;
     document.querySelectorAll(".cmd-filter-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+    if (btn) btn.classList.add("active");
     renderMatrixDeck();
   }
 
-  function setCategoryFilter(catId, btn) {
-    currentCategory = catId;
+  function setCategoryFilter(cId, btn) {
+    currentCategory = cId;
     document.querySelectorAll(".category-pill-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+    if (btn) btn.classList.add("active");
     renderMatrixDeck();
   }
 
-  function handleSearchFilter(q) {
-    searchQuery = q.toLowerCase().trim();
+  function handleSearchFilter(val) {
+    searchQuery = (val || "").trim().toLowerCase();
     renderMatrixDeck();
   }
 
   function showToast(msg) {
-    const t = document.getElementById("toastNotification");
+    const t = document.getElementById("toastNotif");
     t.textContent = msg;
     t.classList.add("show");
-    setTimeout(() => t.classList.remove("show"), 3200);
+    setTimeout(() => t.classList.remove("show"), 2500);
   }
 
-  function toggleCheck(key, reviewer) {
+  function toggleCheck(key, role) {
     if (!reviewState[key]) reviewState[key] = { ryco: false, ash: false };
-    reviewState[key][reviewer] = !reviewState[key][reviewer];
+    reviewState[key][role] = !reviewState[key][role];
     saveState();
+    refreshStats();
     renderMatrixDeck();
   }
 
@@ -1380,91 +1516,84 @@
     toggleCheck(key, currentReviewer);
   }
 
-  function submitActiveReview() {
-    if (currentReviewer === "ryco") metaState.rycoCompleted = true;
-    else metaState.ashCompleted = true;
+  function submitActiveReview(role) {
+    if (role === "ryco") metaState.rycoCompleted = true;
+    if (role === "ash") metaState.ashCompleted = true;
     saveState();
-    showToast(`Marked ${currentReviewer.toUpperCase()} review as complete!`);
     renderDashboardDeck();
+    showToast((role === "ryco" ? "Ryco" : "Ash") + " review marked complete!");
   }
 
   function bypassBlindLock() {
     metaState.forceUnlocked = true;
     saveState();
-    showToast("Dashboard results revealed in preview mode!");
     renderDashboardDeck();
+    showToast("Consensus deck preview unlocked!");
   }
 
   function refreshStats() {
-    let totalRyco = 0, totalAsh = 0, totalMutual = 0, totalDiff = 0;
-
+    let total = 0, ryco = 0, ash = 0, mutual = 0;
     DATA.forEach(cat => {
       cat.sections.forEach(sec => {
         sec.items.forEach(([name]) => {
+          total++;
           const key = sec.subtitle + "___" + name;
-          const s = reviewState[key] || {};
-          const r = !!s.ryco;
-          const a = !!s.ash;
-          if (r) totalRyco++;
-          if (a) totalAsh++;
-          if (r && a) totalMutual++;
-          if (r !== a && (r || a)) totalDiff++;
+          const s = reviewState[key];
+          if (s) {
+            if (s.ryco) ryco++;
+            if (s.ash) ash++;
+            if (s.ryco && s.ash) mutual++;
+          }
         });
       });
     });
 
-    // Pill counters
-    document.getElementById("pillCountMutual").textContent = totalMutual;
-    document.getElementById("pillCountRyco").textContent = totalRyco;
-    document.getElementById("pillCountAsh").textContent = totalAsh;
-    document.getElementById("pillCountDiff").textContent = totalDiff;
+    const pct = total > 0 ? Math.round((mutual / total) * 100) : 0;
+    const gCircle = document.getElementById("gaugeCircle");
+    if (gCircle) {
+      gCircle.style.setProperty("--gauge-pct", pct);
+      document.getElementById("gaugeValText").textContent = pct + "%";
+    }
+    const gDesc = document.getElementById("gaugeMetaDesc");
+    if (gDesc) gDesc.textContent = `${mutual} of ${total} mutual agreements (${pct}% alignment)`;
 
-    // Lock screen status
-    const rycoSt = document.getElementById("rycoStatusText");
-    const ashSt = document.getElementById("ashStatusText");
-    if (metaState.rycoCompleted) rycoSt.textContent = `Completed (${totalRyco} picks)`;
-    else rycoSt.textContent = totalRyco > 0 ? `In Progress (${totalRyco} picks)` : `Not started`;
+    const sMut = document.getElementById("statValMutual");
+    if (sMut) sMut.textContent = mutual;
+    const sRyc = document.getElementById("statValRyco");
+    if (sRyc) sRyc.textContent = ryco;
+    const sAsh = document.getElementById("statValAsh");
+    if (sAsh) sAsh.textContent = ash;
 
-    if (metaState.ashCompleted) ashSt.textContent = `Completed (${totalAsh} picks)`;
-    else ashSt.textContent = totalAsh > 0 ? `In Progress (${totalAsh} picks)` : `Not started`;
+    // Update lock screen status
+    const lSR = document.getElementById("lockStatusRyco");
+    if (lSR) lSR.textContent = metaState.rycoCompleted ? `Review Completed (${ryco} selected)` : `Evaluating (${ryco} selected)`;
+    const lBR = document.getElementById("lockBtnRyco");
+    if (lBR) {
+      if (metaState.rycoCompleted) {
+        lBR.classList.add("done");
+        lBR.textContent = "Completed ✓";
+      } else {
+        lBR.classList.remove("done");
+        lBR.textContent = "Mark Complete";
+      }
+    }
+    const lCR = document.getElementById("lockCardRyco");
+    if (lCR) lCR.classList.toggle("done", metaState.rycoCompleted);
 
-    // Dashboard KPI
-    document.getElementById("kpiRycoNum").textContent = totalRyco;
-    document.getElementById("kpiRycoSub").textContent = Math.round((totalRyco / 467) * 100) + "% of scope";
-
-    document.getElementById("kpiAshNum").textContent = totalAsh;
-    document.getElementById("kpiAshSub").textContent = Math.round((totalAsh / 467) * 100) + "% of scope";
-
-    document.getElementById("kpiMutualNum").textContent = totalMutual;
-    document.getElementById("kpiMutualSub").textContent = Math.round((totalMutual / 467) * 100) + "% agreement";
-
-    // Proportional Alignment Bar
-    const total = 467;
-    const rycoOnly = totalRyco - totalMutual;
-    const ashOnly = totalAsh - totalMutual;
-    const open = total - (totalMutual + rycoOnly + ashOnly);
-
-    const pM = ((totalMutual / total) * 100).toFixed(1);
-    const pR = ((rycoOnly / total) * 100).toFixed(1);
-    const pA = ((ashOnly / total) * 100).toFixed(1);
-    const pO = (100 - pM - pR - pA).toFixed(1);
-
-    const bM = document.getElementById("segMutualBar");
-    const bR = document.getElementById("segRycoBar");
-    const bA = document.getElementById("segAshBar");
-    const bO = document.getElementById("segOpenBar");
-
-    bM.style.width = pM + "%";
-    bM.textContent = totalMutual > 0 ? `${totalMutual} Mutual` : "";
-
-    bR.style.width = pR + "%";
-    bR.textContent = rycoOnly > 0 ? `${rycoOnly} Ryco` : "";
-
-    bA.style.width = pA + "%";
-    bA.textContent = ashOnly > 0 ? `${ashOnly} Ash` : "";
-
-    bO.style.width = pO + "%";
-    bO.textContent = open > 0 ? `${open} Open` : "";
+    const lSA = document.getElementById("lockStatusAsh");
+    if (lSA) lSA.textContent = metaState.ashCompleted ? `Review Completed (${ash} selected)` : `Evaluating (${ash} selected)`;
+    const lBA = document.getElementById("lockBtnAsh");
+    if (lBA) {
+      if (metaState.ashCompleted) {
+        lBA.classList.add("done");
+        lBA.textContent = "Completed ✓";
+      } else {
+        lBA.classList.remove("done");
+        lBA.textContent = "Mark Complete";
+      }
+    }
+    const lCA = document.getElementById("lockCardAsh");
+    if (lCA) lCA.classList.toggle("done", metaState.ashCompleted);
   }
 
   function buildCategoryStrip() {
@@ -1474,7 +1603,8 @@
       const b = document.createElement("button");
       b.className = "category-pill-btn";
       const totalCount = cat.sections.reduce((acc, s) => acc + s.items.length, 0);
-      b.textContent = cat.title.split(". ")[1] + ` (${totalCount})`;
+      const label = cat.title.includes(". ") ? cat.title.split(". ").slice(1).join(". ") : cat.title;
+      b.textContent = label + ` (${totalCount})`;
       b.onclick = () => setCategoryFilter(cat.category_id, b);
       nav.appendChild(b);
     });
@@ -1584,55 +1714,67 @@
 
       if (!anyMatch) return;
 
-      const header = document.createElement("div");
-      header.className = "domain-master-header";
-      header.innerHTML = `
-        <div class="domain-title-block">
-          <h2>${cat.title}</h2>
-          <p>${cat.description}</p>
-        </div>
-        <div class="domain-status-pills">
-          ${catMutual > 0 ? `<span class="domain-indicator mutual">${catMutual} Mutual</span>` : ''}
-          <span class="domain-indicator ryco">Ryco: ${catRyco}</span>
-          <span class="domain-indicator ash">Ash: ${catAsh}</span>
+      const pMutual = catTotal > 0 ? Math.round((catMutual / catTotal) * 100) : 0;
+      masterCard.innerHTML = `
+        <div class="domain-master-header">
+          <div class="domain-header-left">
+            <span class="domain-tag-pill">DOMAIN</span>
+            <span class="domain-title-text">${cat.title}</span>
+          </div>
+          <div class="domain-badges">
+            <div class="domain-badge-item" style="color:var(--ice-cyan);">${catMutual} Mutual (${pMutual}%)</div>
+            <div class="domain-badge-item" style="color:var(--ryco-blue);">Ryco: ${catRyco}</div>
+            <div class="domain-badge-item" style="color:var(--ash-amber);">Ash: ${catAsh}</div>
+          </div>
         </div>
       `;
-
-      masterCard.appendChild(header);
       masterCard.appendChild(subBlockContainer);
       container.appendChild(masterCard);
     });
 
     if (container.children.length === 0) {
       container.innerHTML = `
-        <div style="text-align:center; padding: 50px 20px; color: var(--text-muted); background:var(--surface-main); border-radius:12px; border:1px solid var(--border);">
-          <h3 style="font-family:'Sora',sans-serif; color:var(--text-primary); margin-bottom:6px;">No features found</h3>
-          <p style="font-size:13px;">Try selecting "All Features" or resetting search query.</p>
+        <div style="text-align:center; padding:50px 20px; background:var(--surface-main); border:1px solid var(--border); border-radius:12px; color:var(--text-muted);">
+          No features match the active filters.
         </div>
       `;
     }
   }
 
-  function toggleSubgroup(subTitle) {
-    DATA.forEach(cat => {
-      const sec = cat.sections.find(s => s.subtitle === subTitle);
-      if (sec) {
-        const allChecked = sec.items.every(([name]) => {
-          const key = sec.subtitle + "___" + name;
-          return !!(reviewState[key] && reviewState[key][currentReviewer]);
-        });
-        sec.items.forEach(([name]) => {
-          const key = sec.subtitle + "___" + name;
-          if (!reviewState[key]) reviewState[key] = { ryco: false, ash: false };
-          reviewState[key][currentReviewer] = !allChecked;
-        });
+  function toggleSubgroup(subtitle) {
+    let targetCat = null;
+    let targetSec = null;
+    for (const c of DATA) {
+      for (const s of c.sections) {
+        if (s.subtitle === subtitle) {
+          targetCat = c;
+          targetSec = s;
+          break;
+        }
       }
+      if (targetSec) break;
+    }
+    if (!targetSec) return;
+
+    let anyUnchecked = false;
+    targetSec.items.forEach(([name]) => {
+      const key = subtitle + "___" + name;
+      if (!reviewState[key] || !reviewState[key][currentReviewer]) anyUnchecked = true;
     });
+
+    const newVal = anyUnchecked;
+    targetSec.items.forEach(([name]) => {
+      const key = subtitle + "___" + name;
+      if (!reviewState[key]) reviewState[key] = { ryco: false, ash: false };
+      reviewState[key][currentReviewer] = newVal;
+    });
+
     saveState();
+    refreshStats();
     renderMatrixDeck();
+    showToast((newVal ? "Selected all" : "Deselected all") + " for " + (currentReviewer === "ryco" ? "Ryco" : "Ash"));
   }
 
-  // DASHBOARD DECK
   function renderDashboardDeck() {
     const isBothDone = (metaState.rycoCompleted && metaState.ashCompleted) || metaState.forceUnlocked;
     const lockCard = document.getElementById("blindLockCard");
@@ -1664,15 +1806,16 @@
         });
       });
 
-      const pR = Math.round((cRyco / cTotal) * 100);
-      const pA = Math.round((cAsh / cTotal) * 100);
-      const pM = Math.round((cMutual / cTotal) * 100);
+      const pR = cTotal > 0 ? Math.round((cRyco / cTotal) * 100) : 0;
+      const pA = cTotal > 0 ? Math.round((cAsh / cTotal) * 100) : 0;
+      const pM = cTotal > 0 ? Math.round((cMutual / cTotal) * 100) : 0;
 
       const dCard = document.createElement("div");
       dCard.className = "domain-matrix-card";
+      const cleanTitle = cat.title.includes(". ") ? cat.title.split(". ").slice(1).join(". ") : cat.title;
       dCard.innerHTML = `
         <div class="matrix-card-head">
-          <span class="matrix-card-name" title="${cat.title}">${cat.title.split('. ')[1]}</span>
+          <span class="matrix-card-name" title="${cat.title}">${cleanTitle}</span>
           <span style="color:var(--ice-cyan); font-size:12px; font-weight:700;">${cMutual} / ${cTotal} Agreed</span>
         </div>
         <div class="matrix-card-bars">
@@ -1693,14 +1836,13 @@
           </div>
         </div>
         <button class="btn-inspect-domain" onclick="openDrillModal(${catIdx})">
-          Inspect Domain (${cTotal} items) &rarr;
+          &#128269; See All ${cTotal} Features &rarr;
         </button>
       `;
       grid.appendChild(dCard);
     });
   }
 
-  // DRILL-DOWN MODAL
   function openDrillModal(catIndex) {
     const cat = DATA[catIndex];
     if (!cat) return;
@@ -1731,7 +1873,7 @@
             <span class="vote-pill ${r ? 'ryco-yes' : 'ryco-no'}">Ryco: ${r ? 'Yes' : 'No'}</span>
             <span class="vote-pill ${a ? 'ash-yes' : 'ash-no'}">Ash: ${a ? 'Yes' : 'No'}</span>
             <span class="vote-flag ${isMutual ? 'both' : (r || a ? 'diff' : '')}">
-              ${isMutual ? 'Agreement' : (r || a ? 'Split' : 'Neither')}
+              ${isMutual ? 'Mutual' : (r || a ? 'Split' : 'Neither')}
             </span>
           </div>
         `;
@@ -1755,11 +1897,13 @@
     const payload = { items: reviewState, meta: metaState };
     const jsonStr = JSON.stringify(payload);
     const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
-    const target = currentReviewer === "ryco" ? "ash" : "ryco";
-    const url = `${window.location.origin}${window.location.pathname}?user=${target}#state=${b64}`;
+    
+    // Auto switch reviewer to Ash when sharing
+    const nextRole = currentReviewer === "ryco" ? "ash" : "ryco";
+    const url = window.location.origin + window.location.pathname + "?user=" + nextRole + "#state=" + b64;
 
     navigator.clipboard.writeText(url).then(() => {
-      showToast(`Link copied for ${target.toUpperCase()}! Your choices are pre-loaded.`);
+      showToast("Share link copied! Open on phone or send to " + (nextRole === "ash" ? "Ash" : "Ryco"));
     }).catch(() => {
       prompt("Copy link:", url);
     });
@@ -1771,48 +1915,30 @@
     const ryco = [];
     const ash = [];
 
-    DATA.forEach(cat => {
-      cat.sections.forEach(sec => {
-        sec.items.forEach(([name]) => {
-          const key = sec.subtitle + "___" + name;
-          const s = reviewState[key] || {};
-          if (s.ryco && s.ash) mutual.push(`${name} (${sec.subtitle})`);
-          else if (s.ryco) ryco.push(`${name} (${sec.subtitle})`);
-          else if (s.ash) ash.push(`${name} (${sec.subtitle})`);
+    DATA.forEach(c => {
+      c.sections.forEach(s => {
+        s.items.forEach(([name]) => {
+          const k = s.subtitle + "___" + name;
+          const st = reviewState[k] || {};
+          if (st.ryco && st.ash) mutual.push(name);
+          else if (st.ryco) ryco.push(name);
+          else if (st.ash) ash.push(name);
         });
       });
     });
 
-    let msg = `*GHOSTLY x DISCORD PLATFORM REVIEW*\n`;
-    msg += `Total Evaluated: 467 features\n`;
-    msg += `*Mutual Consensus (Both Agreed)*: ${mutual.length} features\n`;
-    msg += `Ryco Total: ${mutual.length + ryco.length} | Ash Total: ${mutual.length + ash.length}\n\n`;
+    let text = "*GHOSTLY \u2014 PLATFORM PARITY CONSENSUS REPORT*\n";
+    text += `*Evaluated:* 467 features\n`;
+    text += `*Mutual Agreements:* ${mutual.length} (\u2705)\n`;
+    text += `*Ryco Only:* ${ryco.length}\n`;
+    text += `*Ash Only:* ${ash.length}\n\n`;
 
-    if (mutual.length > 0) {
-      msg += `*MUTUAL PRIORITIES (BOTH AGREED)*:\n`;
-      mutual.slice(0, 30).forEach(m => msg += `• ${m}\n`);
-      if (mutual.length > 30) msg += `... and ${mutual.length - 30} more!\n`;
-      msg += `\n`;
-    }
+    text += `*Top Mutual Must-Haves (${mutual.length}):*\n`;
+    mutual.slice(0, 20).forEach(m => text += `\u2022 ${m}\n`);
+    if (mutual.length > 20) text += `...and ${mutual.length - 20} more\n`;
 
-    if (ryco.length > 0) {
-      msg += `*RYCO ONLY PICKS* (${ryco.length}):\n`;
-      ryco.slice(0, 15).forEach(m => msg += `• ${m}\n`);
-      if (ryco.length > 15) msg += `... and ${ryco.length - 15} more!\n`;
-      msg += `\n`;
-    }
-
-    if (ash.length > 0) {
-      msg += `*ASH ONLY PICKS* (${ash.length}):\n`;
-      ash.slice(0, 15).forEach(m => msg += `• ${m}\n`);
-      if (ash.length > 15) msg += `... and ${ash.length - 15} more!\n`;
-      msg += `\n`;
-    }
-
-    msg += `Live dashboard via Vercel link!`;
-
-    navigator.clipboard.writeText(msg).then(() => {
-      showToast("Report copied for WhatsApp!");
+    navigator.clipboard.writeText(text).then(() => {
+      showToast("WhatsApp summary copied to clipboard!");
     }).catch(() => {
       alert("Error copying report");
     });
@@ -1820,39 +1946,44 @@
 
   function exportSelectionsJson() {
     const blob = new Blob([JSON.stringify({ items: reviewState, meta: metaState }, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "ghostly_discord_matrix_mobile.json";
+    a.href = url;
+    a.download = "ghostly_feature_matrix_selections.json";
     a.click();
-    showToast("Exported selections to JSON!");
+    URL.revokeObjectURL(url);
+    showToast("Downloaded selections JSON!");
   }
 
   function triggerJsonImport() {
-    document.getElementById("jsonUploadInput").click();
+    document.getElementById("jsonFileInput").click();
   }
 
-  function handleJsonUpload(input) {
-    const f = input.files[0];
-    if (!f) return;
-    const r = new FileReader();
-    r.onload = (e) => {
+  function handleJsonUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
       try {
-        const p = JSON.parse(e.target.result);
-        reviewState = p.items || p;
-        if (p.meta) metaState = p.meta;
+        const parsed = JSON.parse(evt.target.result);
+        reviewState = parsed.items || parsed;
+        if (parsed.meta) metaState = parsed.meta;
         saveState();
+        refreshStats();
         renderMatrixDeck();
-        renderDashboardDeck();
-        showToast("Imported JSON selections successfully!");
+        if (document.getElementById("viewDashboardSection").classList.contains("active")) {
+          renderDashboardDeck();
+        }
+        showToast("Selections imported successfully!");
       } catch (err) {
-        showToast("Error parsing JSON file");
+        alert("Invalid JSON file");
       }
     };
-    r.readAsText(f);
+    reader.readAsText(file);
+    e.target.value = "";
   }
 
-  initApp();
+  window.addEventListener("DOMContentLoaded", initApp);
 </script>
-
 </body>
 </html>
