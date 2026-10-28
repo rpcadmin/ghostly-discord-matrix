@@ -707,22 +707,18 @@
     <div class="lock-box" id="lockBox">
       <h3 class="sora" style="font-size: 19px; margin-bottom: 8px;">Results Hidden Until Both Finish</h3>
       <p style="font-size: 13.5px; color: var(--text-sec); margin-bottom: 20px;">
-        Once both Ryco and Ash mark their votes as <b>Done</b>, the comparison unlocks here.
+        Once both Ryco and Ash mark their checklist as <b>Done</b>, the comparison unlocks here.
       </p>
 
       <div class="lock-status-row" id="rowRyco">
         <span style="font-weight: 700; color: var(--blue);">Ryco</span>
-        <span style="font-size: 13px; color: var(--text-sec);" id="statusRyco">Voting...</span>
-        <button class="btn" onclick="markUserDone('ryco')" id="lockBtnRyco">Mark Done</button>
+        <span style="font-size: 13px; color: var(--text-sec);" id="statusRyco">In progress</span>
       </div>
 
       <div class="lock-status-row" id="rowAsh">
         <span style="font-weight: 700; color: var(--amber);">Ash</span>
-        <span style="font-size: 13px; color: var(--text-sec);" id="statusAsh">Voting...</span>
-        <button class="btn" onclick="markUserDone('ash')" id="lockBtnAsh">Mark Done</button>
+        <span style="font-size: 13px; color: var(--text-sec);" id="statusAsh">In progress</span>
       </div>
-
-      <button class="btn" onclick="unlockNow()" style="margin-top: 12px;">Show Results Anyway</button>
     </div>
 
     <!-- Unlocked Results -->
@@ -796,7 +792,7 @@
         state = parsed.items || parsed;
         if (parsed.meta) meta = parsed.meta;
         save();
-        toast("Loaded shared votes!");
+        toast("Loaded shared checklist!");
       } catch (e) {}
     } else {
       for (const k of STORAGE_KEYS) {
@@ -1055,21 +1051,8 @@
     else meta.ashCompleted = !meta.ashCompleted;
     save();
     updateTopBar();
-    toast((user === "ryco" ? meta.rycoCompleted : meta.ashCompleted) ? "Marked as Done!" : "Reopened for voting");
-  }
-
-  function markUserDone(u) {
-    if (u === "ryco") meta.rycoCompleted = !meta.rycoCompleted;
-    else meta.ashCompleted = !meta.ashCompleted;
-    save();
-    updateTopBar();
-    renderResults();
-  }
-
-  function unlockNow() {
-    meta.forceUnlocked = true;
-    save();
-    renderResults();
+    if (inResults) renderResults();
+    toast((user === "ryco" ? meta.rycoCompleted : meta.ashCompleted) ? "Checklist Done!" : "Checklist reopened");
   }
 
   function renderResults() {
@@ -1084,14 +1067,12 @@
     })));
 
     document.getElementById("rowRyco").classList.toggle("done", meta.rycoCompleted);
-    document.getElementById("statusRyco").textContent = meta.rycoCompleted ? `Done (${rTot} selected)` : "Still voting...";
-    document.getElementById("lockBtnRyco").textContent = meta.rycoCompleted ? "Done ✓" : "Mark Done";
+    document.getElementById("statusRyco").textContent = meta.rycoCompleted ? "Checklist Done ✓" : "In progress";
 
     document.getElementById("rowAsh").classList.toggle("done", meta.ashCompleted);
-    document.getElementById("statusAsh").textContent = meta.ashCompleted ? `Done (${aTot} selected)` : "Still voting...";
-    document.getElementById("lockBtnAsh").textContent = meta.ashCompleted ? "Done ✓" : "Mark Done";
+    document.getElementById("statusAsh").textContent = meta.ashCompleted ? "Checklist Done ✓" : "In progress";
 
-    const open = (meta.rycoCompleted && meta.ashCompleted) || meta.forceUnlocked;
+    const open = meta.rycoCompleted && meta.ashCompleted;
     document.getElementById("lockBox").style.display = open ? "none" : "block";
     document.getElementById("unlockedBox").style.display = open ? "block" : "none";
     if (!open) return;
