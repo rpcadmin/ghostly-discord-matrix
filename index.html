@@ -281,6 +281,11 @@
     border-color: var(--blue);
     color: #fff;
   }
+  body.user-ash .cat-pill.active {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: #08111E;
+  }
 
   /* Domain Section */
   .domain-box {
@@ -454,6 +459,29 @@
     background: var(--blue);
     border-color: var(--blue);
     color: #fff;
+  }
+  body.user-ash .q-btn:hover,
+  body.user-ash .q-btn.open {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: #08111E;
+  }
+  .picked-user-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 5px;
+    margin-left: 6px;
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .picked-user-tag.ryco {
+    background: var(--blue);
+    color: #fff;
+  }
+  .picked-user-tag.ash {
+    background: var(--amber);
+    color: #08111E;
   }
 
   .q-drawer {
@@ -1151,6 +1179,7 @@
   }
 
   function updateTopBar() {
+    document.body.classList.toggle("user-ash", user === "ash");
     document.getElementById("btnRyco").classList.toggle("active", !inResults && user === "ryco");
     document.getElementById("btnAsh").classList.toggle("active", !inResults && user === "ash");
     document.getElementById("tabResults").classList.toggle("active", inResults);
@@ -1160,12 +1189,21 @@
       const k = s.subtitle + "___" + i.name;
       if (state[k] && state[k][user]) cnt++;
     })));
-    document.getElementById("myProgressPill").textContent = `${cnt} / 467`;
+    const uName = user === "ryco" ? "Ryco" : "Ash";
+    document.getElementById("myProgressPill").textContent = `${uName}: ${cnt} / 467`;
 
     const isDone = user === "ryco" ? meta.rycoCompleted : meta.ashCompleted;
     const bDone = document.getElementById("btnDone");
     bDone.classList.toggle("done", isDone);
-    document.getElementById("txtDone").textContent = isDone ? "Done ✓" : "Done";
+    document.getElementById("txtDone").textContent = isDone ? `${uName} Done ✓` : `${uName} Done`;
+  }
+
+  function personalizeText(txt) {
+    if (!txt) return "";
+    if (user === "ash") {
+      return txt.replace(/@ryco/g, "@ash").replace(/Ryco/g, "Ash");
+    }
+    return txt;
   }
 
   function setFilter(f) {
@@ -1291,21 +1329,24 @@
           card.className = "item-card" + (picked ? (user === "ryco" ? " picked-ryco" : " picked-ash") : "");
           card.onclick = () => toggleVote(k);
 
+          const uLabel = user === "ryco" ? "Ryco" : "Ash";
+          const pickedBadge = picked ? `<span class="picked-user-tag ${user}">✓ ${uLabel}</span>` : "";
+
           card.innerHTML = `
             <div class="item-row">
               <div class="check-box">
                 <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
               </div>
               <div class="item-body">
-                <div class="item-name">${item.name}</div>
-                <div class="item-desc">${item.desc}</div>
+                <div class="item-name">${item.name} ${pickedBadge}</div>
+                <div class="item-desc">${personalizeText(item.desc)}</div>
               </div>
               <button class="q-btn ${helpOpen ? 'open' : ''}" onclick="toggleHelp('${k}', event)" title="Plain English explanation">?</button>
             </div>
             ${helpOpen ? `
               <div class="q-drawer" onclick="event.stopPropagation()">
-                <div class="q-line"><b>What it is:</b> ${item.simple}</div>
-                <div class="q-line"><b>For Ghostly:</b> ${item.ghostly}</div>
+                <div class="q-line"><b>What it is:</b> ${personalizeText(item.simple)}</div>
+                <div class="q-line"><b>For Ghostly:</b> ${personalizeText(item.ghostly)}</div>
               </div>
             ` : ''}
           `;
