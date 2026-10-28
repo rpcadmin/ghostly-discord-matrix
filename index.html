@@ -202,17 +202,62 @@
   }
 
   /* Category Pills */
+  .cat-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .cat-arrow {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text-sec);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .cat-arrow:hover {
+    background: var(--card-hover);
+    color: #fff;
+    border-color: var(--border-active);
+  }
+  .cat-arrow svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    fill: none;
+  }
   .cat-bar {
     display: flex;
     gap: 6px;
     overflow-x: auto;
-    padding-bottom: 8px;
-    margin-bottom: 18px;
-    scrollbar-width: none;
+    padding-bottom: 6px;
     -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    flex: 1;
+    cursor: grab;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-active) transparent;
+  }
+  .cat-bar:active {
+    cursor: grabbing;
   }
   .cat-bar::-webkit-scrollbar {
-    display: none;
+    height: 5px;
+  }
+  .cat-bar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .cat-bar::-webkit-scrollbar-thumb {
+    background: var(--border-active);
+    border-radius: 4px;
   }
   .cat-pill {
     background: var(--panel);
@@ -225,6 +270,11 @@
     white-space: nowrap;
     cursor: pointer;
     flex-shrink: 0;
+    user-select: none;
+  }
+  .cat-pill:hover {
+    border-color: var(--border-active);
+    color: #fff;
   }
   .cat-pill.active {
     background: var(--blue);
@@ -638,7 +688,15 @@
       </div>
     </div>
 
-    <div class="cat-bar" id="catBar"></div>
+    <div class="cat-wrap">
+      <button class="cat-arrow" onclick="scrollCats(-280)" title="Scroll left">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="cat-bar" id="catBar"></div>
+      <button class="cat-arrow" onclick="scrollCats(280)" title="Scroll right">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
     <div id="listContainer"></div>
   </div>
 
@@ -756,7 +814,38 @@
 
     updateTopBar();
     renderCats();
+    initCatScroll();
     renderList();
+  }
+
+  function scrollCats(delta) {
+    const bar = document.getElementById("catBar");
+    if (bar) bar.scrollBy({ left: delta, behavior: "smooth" });
+  }
+
+  function initCatScroll() {
+    const bar = document.getElementById("catBar");
+    if (!bar) return;
+    bar.addEventListener("wheel", (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        bar.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+
+    let isDown = false, startX = 0, scrollLeft = 0;
+    bar.addEventListener("mousedown", (e) => {
+      isDown = true;
+      startX = e.pageX - bar.offsetLeft;
+      scrollLeft = bar.scrollLeft;
+    });
+    window.addEventListener("mouseup", () => { isDown = false; });
+    bar.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - bar.offsetLeft;
+      bar.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
   }
 
   function save() {
