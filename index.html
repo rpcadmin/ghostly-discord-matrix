@@ -609,11 +609,7 @@
       <div class="seg-group">
         <button class="seg-btn ryco active" id="btnRyco" onclick="setReviewer('ryco')">Ryco</button>
         <button class="seg-btn ash" id="btnAsh" onclick="setReviewer('ash')">Ash</button>
-      </div>
-
-      <div class="seg-group">
-        <button class="seg-btn tab active" id="tabVote" onclick="setTab('vote')">Vote</button>
-        <button class="seg-btn tab" id="tabResults" onclick="setTab('results')">Results</button>
+        <button class="seg-btn tab" id="tabResults" onclick="showResults()">Results</button>
       </div>
 
       <button class="btn" id="btnDone" onclick="toggleDone()">
@@ -725,6 +721,7 @@
   let state = {};
   let meta = { rycoCompleted: false, ashCompleted: false, forceUnlocked: false };
   let user = "ryco";
+  let inResults = false;
   let catFilter = "all";
   let pickFilter = "all";
   let query = "";
@@ -770,13 +767,25 @@
 
   function setReviewer(u) {
     user = u;
+    inResults = false;
+    document.getElementById("viewVote").style.display = "block";
+    document.getElementById("viewResults").style.display = "none";
     updateTopBar();
     renderList();
   }
 
+  function showResults() {
+    inResults = true;
+    document.getElementById("viewVote").style.display = "none";
+    document.getElementById("viewResults").style.display = "block";
+    updateTopBar();
+    renderResults();
+  }
+
   function updateTopBar() {
-    document.getElementById("btnRyco").classList.toggle("active", user === "ryco");
-    document.getElementById("btnAsh").classList.toggle("active", user === "ash");
+    document.getElementById("btnRyco").classList.toggle("active", !inResults && user === "ryco");
+    document.getElementById("btnAsh").classList.toggle("active", !inResults && user === "ash");
+    document.getElementById("tabResults").classList.toggle("active", inResults);
 
     let cnt = 0;
     DATA.forEach(c => c.sections.forEach(s => s.items.forEach(i => {
@@ -789,14 +798,6 @@
     const bDone = document.getElementById("btnDone");
     bDone.classList.toggle("done", isDone);
     document.getElementById("txtDone").textContent = isDone ? "Done ✓" : "Done";
-  }
-
-  function setTab(t) {
-    document.getElementById("viewVote").style.display = t === "vote" ? "block" : "none";
-    document.getElementById("viewResults").style.display = t === "results" ? "block" : "none";
-    document.getElementById("tabVote").classList.toggle("active", t === "vote");
-    document.getElementById("tabResults").classList.toggle("active", t === "results");
-    if (t === "results") renderResults();
   }
 
   function setFilter(f) {
