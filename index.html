@@ -475,9 +475,9 @@
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 32px 20px;
+    padding: 32px 22px;
     text-align: center;
-    max-width: 520px;
+    max-width: 540px;
     margin: 30px auto;
   }
   .lock-status-row {
@@ -489,46 +489,266 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
+    gap: 12px;
   }
   .lock-status-row.done {
     border-color: var(--green);
+    background: rgba(16, 185, 129, 0.07);
+  }
+  .vf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border-active);
+    background: var(--card);
+    color: var(--text-sec);
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .vf-btn:hover {
+    background: var(--card-hover);
+    color: #fff;
+  }
+  .vf-btn.is-done {
+    background: var(--green);
+    border-color: var(--green);
+    color: #fff;
+  }
+
+  /* S-Tier Analysis Report (Unlocked after both Done) */
+  .report-header {
+    background: var(--panel);
+    border: 1px solid var(--border-active);
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .report-title {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .report-sub {
+    font-size: 13px;
+    color: var(--text-sec);
+    margin-top: 3px;
   }
 
   .results-summary {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .res-card {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 16px;
-    text-align: center;
+    text-align: left;
   }
   .res-num {
     font-family: 'Sora', sans-serif;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
+    line-height: 1.15;
   }
   .res-lbl {
-    font-size: 12px;
-    color: var(--text-sec);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 4px;
+  }
+  .res-sub {
+    font-size: 11.5px;
+    color: var(--text-muted);
     margin-top: 2px;
   }
 
-  .res-domain-row {
+  .ratio-panel {
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 14px 18px;
-    margin-bottom: 10px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+  }
+  .ratio-bar {
+    height: 12px;
+    border-radius: 8px;
+    background: var(--bg);
+    overflow: hidden;
+    display: flex;
+    margin: 10px 0 12px;
+    border: 1px solid var(--border);
+  }
+  .ratio-seg {
+    height: 100%;
+    transition: width 0.3s ease;
+  }
+  .ratio-legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--text-sec);
+  }
+  .legend-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .cat-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .cat-sum-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    padding: 13px 16px;
+  }
+  .cat-sum-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cat-sum-stats {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-sec);
+    margin-top: 6px;
+  }
+
+  .report-filter-bar {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .rep-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .rep-pill {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text-sec);
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .rep-pill.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+  }
+
+  .rep-domain-block {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .rep-item-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 11px 14px;
+    margin-top: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
+  }
+  .rep-item-row.both {
+    border-color: rgba(66, 200, 255, 0.4);
+    background: rgba(66, 200, 255, 0.06);
+  }
+  .rep-item-row.diff {
+    border-color: rgba(245, 158, 11, 0.35);
+  }
+  .vote-badges {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .v-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--bg);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+  }
+  .v-badge.ryco-yes {
+    background: var(--blue-bg);
+    border-color: var(--blue);
+    color: #93C5FD;
+  }
+  .v-badge.ash-yes {
+    background: var(--amber-bg);
+    border-color: var(--amber);
+    color: #FDE68A;
+  }
+  .verdict-pill {
+    padding: 4px 10px;
+    border-radius: 7px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .verdict-pill.both {
+    background: rgba(66, 200, 255, 0.18);
+    color: var(--cyan);
+  }
+  .verdict-pill.ryco {
+    background: var(--blue-bg);
+    color: #93C5FD;
+  }
+  .verdict-pill.ash {
+    background: var(--amber-bg);
+    color: #FDE68A;
+  }
+  .verdict-pill.none {
+    background: var(--bg);
+    color: var(--text-muted);
   }
 
   /* Modal */
@@ -707,42 +927,103 @@
     <div class="lock-box" id="lockBox">
       <h3 class="sora" style="font-size: 19px; margin-bottom: 8px;">Results Hidden Until Both Finish</h3>
       <p style="font-size: 13.5px; color: var(--text-sec); margin-bottom: 20px;">
-        Once both Ryco and Ash mark their checklist as <b>Done</b>, the comparison unlocks here.
+        Once both Ryco and Ash mark their checklist as <b>Done</b>, the full comparison &amp; analysis report unlocks automatically.
       </p>
 
       <div class="lock-status-row" id="rowRyco">
-        <span style="font-weight: 700; color: var(--blue);">Ryco</span>
-        <span style="font-size: 13px; color: var(--text-sec);" id="statusRyco">In progress</span>
+        <div style="text-align:left;">
+          <div style="font-weight: 700; color: var(--blue); font-size: 14.5px;">Ryco</div>
+          <div style="font-size: 12.5px; color: var(--text-sec);" id="statusRyco">In progress</div>
+        </div>
+        <button class="vf-btn" id="lockBtnRyco" onclick="toggleUserDone('ryco')">&#10005; Not Done</button>
       </div>
 
       <div class="lock-status-row" id="rowAsh">
-        <span style="font-weight: 700; color: var(--amber);">Ash</span>
-        <span style="font-size: 13px; color: var(--text-sec);" id="statusAsh">In progress</span>
+        <div style="text-align:left;">
+          <div style="font-weight: 700; color: var(--amber); font-size: 14.5px;">Ash</div>
+          <div style="font-size: 12.5px; color: var(--text-sec);" id="statusAsh">In progress</div>
+        </div>
+        <button class="vf-btn" id="lockBtnAsh" onclick="toggleUserDone('ash')">&#10005; Not Done</button>
       </div>
     </div>
 
-    <!-- Unlocked Results -->
+    <!-- Unlocked S-Tier Analysis & Comparison Report -->
     <div id="unlockedBox" style="display: none;">
-      <div class="results-summary">
-        <div class="res-card">
-          <div class="res-num" id="resMutual" style="color: var(--cyan);">0</div>
-          <div class="res-lbl">Both Agreed</div>
+      <div class="report-header">
+        <div>
+          <div class="report-title">Ghostly Alignment &amp; Decision Report</div>
+          <div class="report-sub">Complete side-by-side analysis of Ryco &amp; Ash across all 467 features</div>
         </div>
-        <div class="res-card">
-          <div class="res-num" id="resRyco" style="color: var(--blue);">0</div>
-          <div class="res-lbl">Ryco Total</div>
-        </div>
-        <div class="res-card">
-          <div class="res-num" id="resAsh" style="color: var(--amber);">0</div>
-          <div class="res-lbl">Ash Total</div>
-        </div>
-        <div class="res-card">
-          <div class="res-num" id="resDiff">0</div>
-          <div class="res-lbl">Differences</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn" onclick="reopenChecklists()">Reopen Checklists</button>
+          <button class="btn primary" onclick="window.print()">Print / Save PDF</button>
         </div>
       </div>
 
-      <div id="resDomainsList"></div>
+      <div class="results-summary">
+        <div class="res-card">
+          <div class="res-num" id="resScore" style="color: var(--green);">0%</div>
+          <div class="res-lbl">Agreement Rate</div>
+          <div class="res-sub" id="resScoreSub">Across all 467 features</div>
+        </div>
+        <div class="res-card">
+          <div class="res-num" id="resMutual" style="color: var(--cyan);">0</div>
+          <div class="res-lbl">Both Chosen (&#10003; / &#10003;)</div>
+          <div class="res-sub">Instant green-light for Ghostly</div>
+        </div>
+        <div class="res-card">
+          <div class="res-num" id="resRycoOnly" style="color: var(--blue);">0</div>
+          <div class="res-lbl">Ryco Only (&#10003; / &#10005;)</div>
+          <div class="res-sub" id="resRycoTotalSub">0 total picked by Ryco</div>
+        </div>
+        <div class="res-card">
+          <div class="res-num" id="resAshOnly" style="color: var(--amber);">0</div>
+          <div class="res-lbl">Ash Only (&#10005; / &#10003;)</div>
+          <div class="res-sub" id="resAshTotalSub">0 total picked by Ash</div>
+        </div>
+        <div class="res-card">
+          <div class="res-num" id="resNeither" style="color: var(--text-sec);">0</div>
+          <div class="res-lbl">Skipped by Both (&#10005; / &#10005;)</div>
+          <div class="res-sub">Agreed to leave out</div>
+        </div>
+      </div>
+
+      <div class="ratio-panel">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <strong style="font-size:13.5px; color:#fff;">Decision Distribution (467 Features)</strong>
+          <span style="font-size:12px; color:var(--text-sec);" id="resActiveUnion">0 active picks combined</span>
+        </div>
+        <div class="ratio-bar">
+          <div class="ratio-seg" id="barBoth" style="background: var(--cyan); width: 0%;"></div>
+          <div class="ratio-seg" id="barRyco" style="background: var(--blue); width: 0%;"></div>
+          <div class="ratio-seg" id="barAsh" style="background: var(--amber); width: 0%;"></div>
+          <div class="ratio-seg" id="barNone" style="background: #1E3250; width: 100%;"></div>
+        </div>
+        <div class="ratio-legend">
+          <span><i class="legend-dot" style="background:var(--cyan);"></i>Both Chosen (<b id="legBoth">0</b>)</span>
+          <span><i class="legend-dot" style="background:var(--blue);"></i>Ryco Only (<b id="legRyco">0</b>)</span>
+          <span><i class="legend-dot" style="background:var(--amber);"></i>Ash Only (<b id="legAsh">0</b>)</span>
+          <span><i class="legend-dot" style="background:#3A5275;"></i>Skipped by Both (<b id="legNone">0</b>)</span>
+        </div>
+      </div>
+
+      <h3 class="sora" style="font-size:15.5px; margin-bottom:10px; color:#fff;">Category Breakdown (13 Domains)</h3>
+      <div class="cat-summary-grid" id="catSummaryGrid"></div>
+
+      <h3 class="sora" style="font-size:15.5px; margin-bottom:10px; color:#fff;">Detailed Feature Comparison (Who Chose What)</h3>
+      <div class="report-filter-bar">
+        <div class="rep-pills">
+          <button class="rep-pill active" id="rf_all" onclick="setReportFilter('all')">All (467)</button>
+          <button class="rep-pill" id="rf_both" onclick="setReportFilter('both')">Both Chosen</button>
+          <button class="rep-pill" id="rf_diff" onclick="setReportFilter('diff')">Differences (Ryco vs Ash)</button>
+          <button class="rep-pill" id="rf_ryco" onclick="setReportFilter('ryco')">Ryco Only</button>
+          <button class="rep-pill" id="rf_ash" onclick="setReportFilter('ash')">Ash Only</button>
+          <button class="rep-pill" id="rf_none" onclick="setReportFilter('none')">Skipped by Both</button>
+        </div>
+        <input type="text" class="search-box" style="max-width:260px; padding:7px 12px; font-size:13px;" placeholder="Search report..." oninput="onReportSearch(this.value)">
+      </div>
+
+      <div id="resDetailedList"></div>
     </div>
 
   </div>
@@ -779,6 +1060,8 @@
   let catFilter = "all";
   let pickFilter = "all";
   let query = "";
+  let reportFilter = "all";
+  let reportQuery = "";
   let openHelp = new Set();
 
   function init() {
@@ -1052,62 +1335,211 @@
     save();
     updateTopBar();
     if (inResults) renderResults();
-    toast((user === "ryco" ? meta.rycoCompleted : meta.ashCompleted) ? "Checklist Done!" : "Checklist reopened");
+    toast((user === "ryco" ? meta.rycoCompleted : meta.ashCompleted) ? "Checklist Done ✓" : "Checklist reopened");
+  }
+
+  function toggleUserDone(u) {
+    if (u === "ryco") meta.rycoCompleted = !meta.rycoCompleted;
+    else meta.ashCompleted = !meta.ashCompleted;
+    save();
+    updateTopBar();
+    renderResults();
+  }
+
+  function reopenChecklists() {
+    meta.rycoCompleted = false;
+    meta.ashCompleted = false;
+    save();
+    updateTopBar();
+    renderResults();
+    toast("Checklists reopened");
+  }
+
+  function setReportFilter(f) {
+    reportFilter = f;
+    ["all", "both", "diff", "ryco", "ash", "none"].forEach(id => {
+      const el = document.getElementById("rf_" + id);
+      if (el) el.classList.toggle("active", id === f);
+    });
+    renderDetailedComparison();
+  }
+
+  function onReportSearch(v) {
+    reportQuery = (v || "").trim().toLowerCase();
+    renderDetailedComparison();
   }
 
   function renderResults() {
-    let rTot = 0, aTot = 0, mutTot = 0, diffTot = 0;
+    let rTot = 0, aTot = 0, mutTot = 0, rOnly = 0, aOnly = 0, noneTot = 0;
     DATA.forEach(c => c.sections.forEach(s => s.items.forEach(i => {
       const k = s.subtitle + "___" + i.name;
       const st = state[k] || {};
-      if (st.ryco) rTot++;
-      if (st.ash) aTot++;
-      if (st.ryco && st.ash) mutTot++;
-      else if (st.ryco || st.ash) diffTot++;
+      const r = !!st.ryco, a = !!st.ash;
+      if (r) rTot++;
+      if (a) aTot++;
+      if (r && a) mutTot++;
+      else if (r && !a) rOnly++;
+      else if (!r && a) aOnly++;
+      else noneTot++;
     })));
 
-    document.getElementById("rowRyco").classList.toggle("done", meta.rycoCompleted);
-    document.getElementById("statusRyco").textContent = meta.rycoCompleted ? "Checklist Done ✓" : "In progress";
+    const rDone = !!meta.rycoCompleted;
+    const aDone = !!meta.ashCompleted;
 
-    document.getElementById("rowAsh").classList.toggle("done", meta.ashCompleted);
-    document.getElementById("statusAsh").textContent = meta.ashCompleted ? "Checklist Done ✓" : "In progress";
+    document.getElementById("rowRyco").classList.toggle("done", rDone);
+    document.getElementById("statusRyco").textContent = rDone ? `Checklist Done (${rTot} chosen)` : `In progress (${rTot} chosen so far)`;
+    const btnR = document.getElementById("lockBtnRyco");
+    btnR.classList.toggle("is-done", rDone);
+    btnR.innerHTML = rDone ? "&#10003; Done" : "&#10005; Not Done";
 
-    const open = meta.rycoCompleted && meta.ashCompleted;
+    document.getElementById("rowAsh").classList.toggle("done", aDone);
+    document.getElementById("statusAsh").textContent = aDone ? `Checklist Done (${aTot} chosen)` : `In progress (${aTot} chosen so far)`;
+    const btnA = document.getElementById("lockBtnAsh");
+    btnA.classList.toggle("is-done", aDone);
+    btnA.innerHTML = aDone ? "&#10003; Done" : "&#10005; Not Done";
+
+    const open = rDone && aDone;
     document.getElementById("lockBox").style.display = open ? "none" : "block";
     document.getElementById("unlockedBox").style.display = open ? "block" : "none";
     if (!open) return;
 
+    const total = 467;
+    const sameCount = mutTot + noneTot;
+    const agreePct = Math.round((sameCount / total) * 100);
+    const unionActive = mutTot + rOnly + aOnly;
+
+    document.getElementById("resScore").textContent = agreePct + "%";
+    document.getElementById("resScoreSub").textContent = `${sameCount} of ${total} identical decisions`;
     document.getElementById("resMutual").textContent = mutTot;
-    document.getElementById("resRyco").textContent = rTot;
-    document.getElementById("resAsh").textContent = aTot;
-    document.getElementById("resDiff").textContent = diffTot;
+    document.getElementById("resRycoOnly").textContent = rOnly;
+    document.getElementById("resRycoTotalSub").textContent = `${rTot} total chosen by Ryco`;
+    document.getElementById("resAshOnly").textContent = aOnly;
+    document.getElementById("resAshTotalSub").textContent = `${aTot} total chosen by Ash`;
+    document.getElementById("resNeither").textContent = noneTot;
+    document.getElementById("resActiveUnion").textContent = `${unionActive} unique features chosen by at least one`;
 
-    const list = document.getElementById("resDomainsList");
-    list.innerHTML = "";
+    document.getElementById("barBoth").style.width = ((mutTot / total) * 100).toFixed(1) + "%";
+    document.getElementById("barRyco").style.width = ((rOnly / total) * 100).toFixed(1) + "%";
+    document.getElementById("barAsh").style.width = ((aOnly / total) * 100).toFixed(1) + "%";
+    document.getElementById("barNone").style.width = ((noneTot / total) * 100).toFixed(1) + "%";
 
-    DATA.forEach((cat, idx) => {
-      let tot = 0, r = 0, a = 0, m = 0;
+    document.getElementById("legBoth").textContent = mutTot;
+    document.getElementById("legRyco").textContent = rOnly;
+    document.getElementById("legAsh").textContent = aOnly;
+    document.getElementById("legNone").textContent = noneTot;
+
+    document.getElementById("rf_all").textContent = `All (${total})`;
+    document.getElementById("rf_both").textContent = `Both Chosen (${mutTot})`;
+    document.getElementById("rf_diff").textContent = `Differences (${rOnly + aOnly})`;
+    document.getElementById("rf_ryco").textContent = `Ryco Only (${rOnly})`;
+    document.getElementById("rf_ash").textContent = `Ash Only (${aOnly})`;
+    document.getElementById("rf_none").textContent = `Skipped (${noneTot})`;
+
+    const catGrid = document.getElementById("catSummaryGrid");
+    catGrid.innerHTML = "";
+
+    DATA.forEach(cat => {
+      let tot = 0, m = 0, ro = 0, ao = 0, no = 0;
       cat.sections.forEach(s => s.items.forEach(i => {
         tot++;
         const k = s.subtitle + "___" + i.name;
         const st = state[k] || {};
-        if (st.ryco) r++;
-        if (st.ash) a++;
-        if (st.ryco && st.ash) m++;
+        const r = !!st.ryco, a = !!st.ash;
+        if (r && a) m++;
+        else if (r && !a) ro++;
+        else if (!r && a) ao++;
+        else no++;
       }));
 
-      const row = document.createElement("div");
-      row.className = "res-domain-row";
-      row.innerHTML = `
-        <div>
-          <strong style="font-size: 15px; color: #fff;">${cat.title}</strong>
-          <div style="font-size: 12.5px; color: var(--text-sec); margin-top: 3px;">
-            Agreed: <b style="color:var(--cyan)">${m}</b> &bull; Ryco: <b style="color:var(--blue)">${r}</b> &bull; Ash: <b style="color:var(--amber)">${a}</b> (of ${tot})
-          </div>
+      const card = document.createElement("div");
+      card.className = "cat-sum-card";
+      card.innerHTML = `
+        <div class="cat-sum-top">
+          <span>${cat.title}</span>
+          <span style="color:var(--cyan); font-size:12px;">${m} Agreed</span>
         </div>
-        <button class="btn" onclick="openModal(${idx})">See All ${tot}</button>
+        <div class="ratio-bar" style="height:7px; margin:8px 0;">
+          <div class="ratio-seg" style="background:var(--cyan); width:${(m/tot*100).toFixed(1)}%;"></div>
+          <div class="ratio-seg" style="background:var(--blue); width:${(ro/tot*100).toFixed(1)}%;"></div>
+          <div class="ratio-seg" style="background:var(--amber); width:${(ao/tot*100).toFixed(1)}%;"></div>
+          <div class="ratio-seg" style="background:#1E3250; width:${(no/tot*100).toFixed(1)}%;"></div>
+        </div>
+        <div class="cat-sum-stats">
+          <span>Both: <b style="color:var(--cyan)">${m}</b></span>
+          <span>Ryco Only: <b style="color:var(--blue)">${ro}</b></span>
+          <span>Ash Only: <b style="color:var(--amber)">${ao}</b></span>
+          <span>Skipped: <b>${no}</b></span>
+        </div>
       `;
-      list.appendChild(row);
+      catGrid.appendChild(card);
+    });
+
+    renderDetailedComparison();
+  }
+
+  function renderDetailedComparison() {
+    const holder = document.getElementById("resDetailedList");
+    holder.innerHTML = "";
+
+    DATA.forEach(cat => {
+      const rows = [];
+      cat.sections.forEach(sec => {
+        sec.items.forEach(item => {
+          const k = sec.subtitle + "___" + item.name;
+          const st = state[k] || {};
+          const r = !!st.ryco, a = !!st.ash;
+          const status = (r && a) ? "both" : (r && !a) ? "ryco" : (!r && a) ? "ash" : "none";
+
+          if (reportFilter === "both" && status !== "both") return;
+          if (reportFilter === "diff" && status !== "ryco" && status !== "ash") return;
+          if (reportFilter === "ryco" && status !== "ryco") return;
+          if (reportFilter === "ash" && status !== "ash") return;
+          if (reportFilter === "none" && status !== "none") return;
+
+          if (reportQuery) {
+            const txt = (item.name + " " + item.desc + " " + item.simple + " " + sec.subtitle).toLowerCase();
+            if (!txt.includes(reportQuery)) return;
+          }
+
+          rows.push({ sec: sec.subtitle, item, r, a, status });
+        });
+      });
+
+      if (rows.length === 0) return;
+
+      const block = document.createElement("div");
+      block.className = "rep-domain-block";
+      block.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+          <strong style="font-size:15px; color:#fff;">${cat.title}</strong>
+          <span style="font-size:12px; color:var(--text-sec);">${rows.length} features shown</span>
+        </div>
+      `;
+
+      rows.forEach(row => {
+        const div = document.createElement("div");
+        div.className = "rep-item-row" + (row.status === "both" ? " both" : (row.status === "ryco" || row.status === "ash") ? " diff" : "");
+
+        const verdictLabel =
+          row.status === "both" ? "&#10003; Both Chosen" :
+          row.status === "ryco" ? "Ryco Only" :
+          row.status === "ash"  ? "Ash Only" : "Skipped";
+
+        div.innerHTML = `
+          <div style="flex:1; min-width:220px;">
+            <div style="font-size:13.5px; font-weight:600; color:#fff;">${row.item.name}</div>
+            <div style="font-size:12px; color:var(--text-sec); margin-top:2px;">${row.item.simple}</div>
+          </div>
+          <div class="vote-badges">
+            <span class="v-badge ${row.r ? 'ryco-yes' : ''}">Ryco: ${row.r ? '&#10003; Yes' : '&#10005; No'}</span>
+            <span class="v-badge ${row.a ? 'ash-yes' : ''}">Ash: ${row.a ? '&#10003; Yes' : '&#10005; No'}</span>
+            <span class="verdict-pill ${row.status}">${verdictLabel}</span>
+          </div>
+        `;
+        block.appendChild(div);
+      });
+
+      holder.appendChild(block);
     });
   }
 
